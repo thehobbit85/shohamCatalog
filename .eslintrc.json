@@ -1,0 +1,31 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "react-native/react-native": true
+    },
+    "extends": [
+      "@react-native-community/eslint-config", // Default RN config
+      "plugin:react/recommended",
+      "standard-with-typescript",
+      "eslint-config-prettier" // Installed in step 3
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+          "tsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": ["tsconfig.json"]
+    },
+    "plugins": [
+      "react",
+      "react-native"
+    ],
+    "rules": {
+      "comma-dangle": ["error", "never"]
+    }
+}

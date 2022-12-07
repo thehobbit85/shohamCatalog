@@ -1,0 +1,132 @@
+[
+    {
+        "type": "רב שנתי",
+        "image": "../assets/types/yearround.png",
+        "data": [
+            {
+                "id": 1,
+                "name": "Babys Breath",
+                "potter": "a-18",
+                "price": 6,
+                "colors": [],
+                "image": "../assets/plants/BabysBreath.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Balloon Flower",
+                "potter": "a-18",
+                "price": 3,
+                "colors": [
+                    "green"
+                ],
+                "image": "../assets/plants/BalloonFlower.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Bee Balm Flower",
+                "potter": "a-18",
+                "price": 5,
+                "colors": [],
+                "image": "../assets/plants/BeeBalmFlower.jpg"
+            }
+        ]
+    },
+    {
+        "type": "עונתי",
+        "image": "../assets/types/seasonal.png",
+        "data": [
+            {
+                "id": 1,
+                "name": "Aconitum",
+                "potter": "a-12",
+                "price": 3,
+                "colors": [
+                    "red",
+                    "blue"
+                ],
+                "image": "../assets/plants/Aconitum.jpg"
+            },
+            {
+                "id": 2,
+                "name": "African Daisy",
+                "potter": "a-12",
+                "price": 32,
+                "colors": [
+                    "white"
+                ],
+                "image": "../assets/plants/AfricanDaisy.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Agapanthus",
+                "potter": "a-12",
+                "price": 12,
+                "colors": [],
+                "image": "../assets/plants/Agapanthus.jpg"
+            }
+        ]
+    },
+    {
+        "type": "קערות 20",
+        "image": "../assets/types/potted.png",
+        "data": [
+            {
+                "id": 1,
+                "name": "CalendulaOfficinalis",
+                "potter": "b-16",
+                "price": 3,
+                "colors": [
+                    "purple"
+                ],
+                "image": "../assets/plants/CalendulaOfficinalis.jpg"
+            },
+            {
+                "id": 2,
+                "name": "California Poppy",
+                "potter": "b-16",
+                "price": 3,
+                "colors": [],
+                "image": "../assets/plants/CaliforniaPoppy.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Calla Lily",
+                "potter": "b-16",
+                "price": 34,
+                "colors": [
+                    "white",
+                    "blue",
+                    "green",
+                    "yellow"
+                ],
+                "image": "../assets/plants/CallaLily.jpg"
+            },
+            {
+                "id": 4,
+                "name": "Candytuft",
+                "potter": "b-16",
+                "price": 3.4,
+                "colors": [],
+                "image": "../assets/plants/Candytuft.jpg"
+            },
+            {
+                "id": 5,
+                "name": "Canna Lily",
+                "potter": "b-16",
+                "price": 5.5,
+                "colors": [],
+                "image": "../assets/plants/CannaLily.jpg"
+            },
+            {
+                "id": 6,
+                "name": "Cape Primrose",
+                "potter": "b-16",
+                "price": 1.2,
+                "colors": [
+                    "purple"
+                ],
+                "image": "../assets/plants/CapePrimrose.jpg"
+            }
+        ]
+    }
+]

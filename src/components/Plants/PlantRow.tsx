@@ -7,7 +7,7 @@ import { scaleText } from '../../utils/utils'
 import { Neumorphism } from '../Neumorphism'
 import { BACKGROUND_COLOR, GOOGLE_DRIVE_URI } from '../../utils/constants'
 import { ThemedText } from '../ThemedText'
-import { AddToCartButton } from './AddToCartButton'
+import { AddButton } from './AddButton'
 import { TranslationContext, FavoritesContext } from '../../context'
 
 interface PlantRowProps {
@@ -29,13 +29,11 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
             source={{ uri: `${GOOGLE_DRIVE_URI}${imageId ?? ''}` }}
             style={styles.image}
           />
-          <AddToCartButton
+          <AddButton
             selected={favorites[plantId] != null}
-            onSelected={(selected) => {
+            onSelected={() => {
               const newFavorites = { ...favorites }
-              if (selected) Object.assign(newFavorites, { [plantId]: data })
-              // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-              if (!selected) delete newFavorites[plantId]
+              Object.assign(newFavorites, { [plantId]: data })
               setFavorites(newFavorites)
             }}
           />

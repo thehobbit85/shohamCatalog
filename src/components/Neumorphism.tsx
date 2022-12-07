@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { BACKGROUND_COLOR } from '../utils/constants'
 import color from 'color'
+
 interface NeumorphismProps {
   children: any
   backgroundColor?: string
@@ -10,33 +11,36 @@ interface NeumorphismProps {
   style?: any
 }
 
-export const Neumorphism = ({
-  children,
-  backgroundColor = BACKGROUND_COLOR,
-  revert = false,
-  style = {}
-}: NeumorphismProps): JSX.Element => {
-  const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
-  const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
+export class Neumorphism extends React.PureComponent<NeumorphismProps> {
+  render(): JSX.Element {
+    const {
+      children,
+      backgroundColor = BACKGROUND_COLOR,
+      revert = false,
+      style = {}
+    } = this.props
+    const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
+    const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
 
-  return (
-    <View
-      style={{
-        ...styles.lightShadow,
-        shadowColor: revert ? darkShadow : lightShadow,
-        ...style
-      }}
-    >
+    return (
       <View
         style={{
-          ...styles.darkShadow,
-          shadowColor: revert ? lightShadow : darkShadow
+          ...styles.lightShadow,
+          shadowColor: revert ? darkShadow : lightShadow,
+          ...style
         }}
       >
-        {children}
+        <View
+          style={{
+            ...styles.darkShadow,
+            shadowColor: revert ? lightShadow : darkShadow
+          }}
+        >
+          {children}
+        </View>
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({

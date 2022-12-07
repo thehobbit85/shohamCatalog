@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, Dimensions, View } from 'react-native'
+import { StyleSheet, Dimensions, View, TouchableOpacity } from 'react-native'
 import { scaleText } from '../../utils/utils'
 
 import { BACKGROUND_COLOR } from '../../utils/constants'
@@ -15,7 +15,6 @@ import Animated, {
 } from 'react-native-reanimated'
 import { Neumorphism } from '../Neumorphism'
 import { AntDesign } from '@expo/vector-icons'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import { useHandler } from '../../hooks/useHandler'
 import { FavoritesList } from './FavoritesList'
 import { ThemedText } from '../ThemedText'
@@ -25,19 +24,19 @@ import { FavoritesContext } from '../../context'
 
 const { width, height } = Dimensions.get('window')
 
-export const Favorites = (): JSX.Element => {
+export const Favorites = ({
+  onSelected
+}: {
+  onSelected?: Function
+}): JSX.Element => {
   const [open, setOpen] = useState(false)
   const openState = useSharedValue(0)
   const [favorites] = useContext(FavoritesContext)
   const iconColor = Object.keys(favorites).length > 0 ? 'red' : 'white'
 
   const handlePress = useHandler(() => {
-    if (openState.value === 1) {
-      setOpen(false)
-    }
-    if (openState.value === 0) {
-      setOpen(true)
-    }
+    setOpen(!open)
+    if (onSelected != null) onSelected(!open)
   })
 
   useEffect(() => {
@@ -66,20 +65,20 @@ export const Favorites = (): JSX.Element => {
     }
   })
 
-  const heartMarginBottom = scaleText(12)
+  const heartMargin = scaleText(12)
   const heartAnimatedStyle = useAnimatedStyle(() => ({
-    marginBottom: openState.value * heartMarginBottom,
-    paddingLeft: (1 - openState.value) * heartMarginBottom
+    marginBottom: openState.value * heartMargin,
+    paddingLeft: (1 - openState.value) * heartMargin
   }))
 
-  const titleMarginRight = scaleText(16)
+  const titleMargin = scaleText(12)
   const titleAnimatedStyle = useAnimatedStyle(() => ({
-    marginRight: openState.value * titleMarginRight,
-    marginLeft: (1 - openState.value) * titleMarginRight * 2
+    marginRight: openState.value * titleMargin,
+    marginLeft: (1 - openState.value) * titleMargin * 2
   }))
 
   return (
-    <Neumorphism revert={open}>
+    <Neumorphism>
       <Animated.View
         style={[styles.itemContainer, containerAnimatedStyle]}
         entering={SlideInRight.delay(250).duration(250)}
@@ -89,9 +88,9 @@ export const Favorites = (): JSX.Element => {
           {open ? (
             <ExpendIcon onPress={handlePress} open={true} initAngle={1} />
           ) : (
-            <TouchableWithoutFeedback onPress={handlePress}>
+            <TouchableOpacity onPress={handlePress}>
               <AntDesign name="heart" size={scaleText(36)} color={iconColor} />
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
           )}
 
           <Animated.View style={[styles.title, titleAnimatedStyle]}>

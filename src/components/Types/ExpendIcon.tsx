@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -10,6 +10,7 @@ import Animated, {
 import { Line, Svg } from 'react-native-svg'
 import { scaleText } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { TouchableOpacity } from 'react-native'
 
 const AnimatedLine = Animated.createAnimatedComponent(Line)
 
@@ -95,7 +96,7 @@ export const ExpendIcon = ({
   }))
 
   return (
-    <TouchableWithoutFeedback onPress={handleToggleDropdown}>
+    <TouchableOpacity onPress={handleToggleDropdown}>
       <Svg height={svgSize} width={svgSize * 2} viewBox={viewBox}>
         <AnimatedLine
           animatedProps={animatedLineProps1}
@@ -116,6 +117,6 @@ export const ExpendIcon = ({
           strokeWidth={strokeWidth}
         />
       </Svg>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   )
 }

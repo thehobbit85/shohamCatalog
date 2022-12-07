@@ -99,7 +99,7 @@ export const TypeRow = ({
   return (
     <Neumorphism>
       <Animated.View
-        entering={SlideInLeft.delay(250).duration(250)}
+        entering={SlideInLeft.duration(250)}
         exiting={SlideOutLeft.duration(250)}
         style={[styles.container, containerAnimatedStyle]}
       >

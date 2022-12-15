@@ -1,4 +1,4 @@
-import Animated, { SlideInDown } from 'react-native-reanimated'
+import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated'
 import { Dimensions, Linking, TouchableOpacity } from 'react-native'
 import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../utils/constants'
 
@@ -26,6 +26,7 @@ export const FavoritesFooter = (): JSX.Element => {
       <Animated.View
         style={styles.footer}
         entering={SlideInDown.delay(250).duration(250)}
+        exiting={SlideOutDown.duration(250)}
       >
         <Neumorphism style={{ ...styles.button, ...styles.leftButton }}>
           <TouchableOpacity onPress={sendEmail}>

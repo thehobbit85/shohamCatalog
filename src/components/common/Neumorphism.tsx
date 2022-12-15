@@ -11,45 +11,44 @@ interface NeumorphismProps {
   style?: any
 }
 
-export class Neumorphism extends React.PureComponent<NeumorphismProps> {
-  render(): JSX.Element {
-    const {
-      children,
-      backgroundColor = '#084b3f',
-      revert = false,
-      style = {}
-    } = this.props
-    const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
-    const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
+export const Neumorphism = (props: NeumorphismProps): JSX.Element => {
+  const {
+    children,
+    backgroundColor = EStyleSheet.value('$backgroundColor'),
+    revert = false,
+    style = {}
+  } = props
 
-    return (
+  const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
+  const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
+
+  return (
+    <View
+      style={{
+        ...styles.outerShadow,
+        shadowColor: revert ? darkShadow : lightShadow,
+        ...style
+      }}
+    >
       <View
         style={{
-          ...styles.lightShadow,
-          shadowColor: revert ? darkShadow : lightShadow,
-          ...style
+          ...styles.innerShadow,
+          shadowColor: revert ? lightShadow : darkShadow
         }}
       >
-        <View
-          style={{
-            ...styles.darkShadow,
-            shadowColor: revert ? lightShadow : darkShadow
-          }}
-        >
-          {children}
-        </View>
+        {children}
       </View>
-    )
-  }
+    </View>
+  )
 }
 
 const styles = EStyleSheet.create({
-  lightShadow: {
+  outerShadow: {
     shadowOffset: { width: -6, height: -6 },
     shadowRadius: 8,
     shadowOpacity: 1
   },
-  darkShadow: {
+  innerShadow: {
     shadowOffset: { width: 6, height: 6 },
     shadowRadius: 8,
     shadowOpacity: 1

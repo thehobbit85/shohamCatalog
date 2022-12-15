@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,13 +19,10 @@ const { height } = Dimensions.get('window')
 export const Application = (): JSX.Element => {
   const [type, setType] = useState<string>()
   const translations = useContext(TranslationContext)
-  const backgroundStyle = useMemo(
-    () => [styles.background, type == null ? styles.backgroundBorders : {}],
-    [type]
-  )
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
+      <View style={styles.background} />
       {type == null || type === 'Favorites' ? (
         <Favorites
           onSelected={(open: boolean) =>
@@ -49,14 +46,17 @@ export const Application = (): JSX.Element => {
 const styles = StyleSheet.create({
   background: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: BACKGROUND_COLOR
-  },
-  backgroundBorders: {
+    backgroundColor: BACKGROUND_COLOR,
     borderRightColor: 'black',
     borderLeftColor: 'black',
-    borderLeftWidth: 6,
-    borderRightWidth: 6
+    borderLeftWidth: 8,
+    borderRightWidth: 8,
+    zIndex: -1,
+    height: '100%',
+    width: '100%',
+    position: 'absolute'
   },
+
   plantList: {
     flexDirection: 'row',
     justifyContent: 'center',

@@ -6,7 +6,7 @@ import { ThemedText } from './common/ThemedText'
 
 import Animated, { SlideInLeft } from 'react-native-reanimated'
 
-const { height, width } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 
 export const Title = ({ title }: { title: string }): JSX.Element => {
   return (
@@ -21,22 +21,20 @@ const styles = StyleSheet.create({
   header: {
     zIndex: -1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
     overflow: 'visible',
     height: scaleText(72)
   },
   title: {
-    marginTop: scaleText(8),
+    flex: 1,
+    height: '100%',
     fontSize: scaleText(48),
-    marginBottom: scaleText(8),
-    alignSelf: 'flex-end'
+    right: scaleText(16)
   },
   logo: {
-    alignSelf: 'flex-end',
-    marginRight: -width / 16,
+    left: scaleText(16),
     height: height / 6,
-    width: height / 6,
-    bottom: 0,
-    left: 0
+    width: height / 6
   }
 })

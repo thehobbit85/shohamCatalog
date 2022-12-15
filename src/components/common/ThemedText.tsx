@@ -50,7 +50,9 @@ export const ThemedText = ({
 
 const styles = StyleSheet.create({
   text: {
-    textAlign: 'center',
+    paddingTop: scaleText(1),
+    paddingRight: scaleText(4),
+    textAlign: 'right',
     fontFamily: 'GveretLevin-Regular',
     fontSize: scaleText(36),
     color: 'white'

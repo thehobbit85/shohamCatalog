@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
 import { View, StyleSheet, Dimensions } from 'react-native'
@@ -73,34 +73,22 @@ export const TypeRow = ({
     }
   })
 
-  // Arrow Animation
-  const arrowBottom = height - scaleText(60)
-  const arrowAnimatedStyle = useAnimatedStyle(() => ({
-    paddingLeft: interpolate(
-      open.value,
-      [0, 1],
-      [styles.arrow.paddingLeft, 8],
-      {
-        extrapolateRight: Extrapolation.CLAMP
-      }
-    ),
-    bottom: open.value * arrowBottom
-  }))
-
-  // Type Animation
+  // Title Animation
   const typeRight = width / 2.5
-  const typeBottom = height - scaleText(142)
+  const typeTop = scaleText(64)
   const typeAnimatedStyle = useAnimatedStyle(() => ({
+    marginTop: open.value * typeTop,
     right: -open.value * typeRight,
-    bottom: open.value * typeBottom
+    width: `${(1 + open.value / 2) * 100}%`
   }))
 
-  // PotType Animation
-  const potRight = width / 5
-  const potBottom = height - scaleText(142)
-  const potTypeAnimatedStyle = useAnimatedStyle(() => ({
-    right: -open.value * potRight,
-    bottom: open.value * potBottom
+  // Arrow Animation
+  const arrowBottom = height - typeTop
+  const arrowAnimatedStyle = useAnimatedStyle(() => ({
+    marginLeft: interpolate(open.value, [0, 1], [styles.arrow.marginLeft, 8], {
+      extrapolateRight: Extrapolation.CLAMP
+    }),
+    bottom: open.value * arrowBottom
   }))
 
   // Image Animation
@@ -111,11 +99,6 @@ export const TypeRow = ({
     })
   }))
 
-  const dataStyle = useMemo(
-    () => (pressed ? styles.dataOpen : styles.dataClose),
-    [pressed]
-  )
-
   return (
     <Neumorphism>
       <Animated.View
@@ -123,14 +106,22 @@ export const TypeRow = ({
         exiting={SlideOutLeft.duration(250)}
         style={[styles.container, containerAnimatedStyle]}
       >
-        <View style={dataStyle}>
+        <View style={styles.column}>
           <Animated.View style={[styles.type, typeAnimatedStyle]}>
-            <ThemedText>{translations[id]}</ThemedText>
+            {pressed ? (
+              <ThemedText
+                style={styles.title}
+              >{`${translations[id]} - ${potType}`}</ThemedText>
+            ) : (
+              <ThemedText>{translations[id]}</ThemedText>
+            )}
           </Animated.View>
 
-          <Animated.View style={[styles.type, potTypeAnimatedStyle]}>
-            <ThemedText style={styles.potType}>{potType}</ThemedText>
-          </Animated.View>
+          {!pressed ? (
+            <View style={styles.type}>
+              <ThemedText style={styles.potType}>{potType}</ThemedText>
+            </View>
+          ) : null}
 
           <Animated.View style={[styles.arrow, arrowAnimatedStyle]}>
             <ExpendButton
@@ -166,40 +157,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end'
   },
-  // Data/Text Styles
-  dataClose: {
-    borderColor: 'white',
-    borderWidth: 3,
+  column: {
+    height: '100%',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start'
   },
-  dataOpen: {
-    borderColor: 'black',
-    borderWidth: 3,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start'
-  },
   type: {
-    alignSelf: 'flex-end',
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    top: scaleText(4),
     marginRight: scaleText(-26)
+  },
+  title: {
+    textAlign: 'right',
+    width: '100%'
   },
   potType: {
     fontSize: scaleText(24)
   },
   arrow: {
-    width: '100%',
-    paddingTop: scaleText(8),
-    paddingLeft: scaleText(26),
+    marginLeft: scaleText(36),
     paddingBottom: scaleText(16)
   },
-  // Image Styles
   imageView: {
     flex: 1
   },

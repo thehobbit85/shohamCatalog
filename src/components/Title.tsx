@@ -2,18 +2,17 @@ import React from 'react'
 import { StyleSheet, Dimensions, Image } from 'react-native'
 
 import { scaleText } from '../utils/utils'
-import { BRAND_NAME } from '../utils/constants'
-import { ThemedText } from './ThemedText'
+import { ThemedText } from './common/ThemedText'
 
 import Animated, { SlideInLeft } from 'react-native-reanimated'
 
 const { height, width } = Dimensions.get('window')
 
-export const Title = (): JSX.Element => {
+export const Title = ({ title }: { title: string }): JSX.Element => {
   return (
     <Animated.View entering={SlideInLeft.duration(250)} style={styles.header}>
       <Image style={styles.logo} source={require('../../assets/flower.png')} />
-      <ThemedText style={styles.title}>{BRAND_NAME}</ThemedText>
+      <ThemedText style={styles.title}>{title}</ThemedText>
     </Animated.View>
   )
 }

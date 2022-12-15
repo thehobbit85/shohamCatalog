@@ -13,14 +13,14 @@ import Animated, {
   interpolate,
   Extrapolation
 } from 'react-native-reanimated'
-import { Neumorphism } from '../Neumorphism'
+import { Neumorphism } from '../common/Neumorphism'
 import { AntDesign } from '@expo/vector-icons'
 import { useHandler } from '../../hooks/useHandler'
 import { FavoritesList } from './FavoritesList'
-import { ThemedText } from '../ThemedText'
-import { ExpendIcon } from '../Types/ExpendIcon'
+import { ThemedText } from '../common/ThemedText'
+import { ExpendButton } from '../buttons/ExpendButton'
 import { FavoritesFooter } from './FavoritesFooter'
-import { FavoritesContext } from '../../context'
+import { FavoritesContext } from '../../providers/Favorites'
 
 const { width, height } = Dimensions.get('window')
 
@@ -86,7 +86,7 @@ export const Favorites = ({
       >
         <Animated.View style={[styles.titleRow, heartAnimatedStyle]}>
           {open ? (
-            <ExpendIcon onPress={handlePress} open={true} initAngle={1} />
+            <ExpendButton onPress={handlePress} open={true} initAngle={1} />
           ) : (
             <TouchableOpacity onPress={handlePress}>
               <AntDesign name="heart" size={scaleText(36)} color={iconColor} />

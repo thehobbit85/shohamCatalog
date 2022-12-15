@@ -5,7 +5,7 @@ import { TypeRow } from '../Types/TypeRow'
 
 import { useHandler } from '../../hooks/useHandler'
 import { TypeData } from '../../types'
-import { TypesContext } from '../../context'
+import { TypesContext } from '../../providers/Plants'
 
 export interface TypeListProps {
   onSelected: (type: string | undefined) => void
@@ -32,7 +32,7 @@ export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
         if (typeSelected == null)
           return <TypeRow onOpened={handleOpen} {...item} />
 
-        if (item.type === typeSelected)
+        if (item.id === typeSelected)
           return <TypeRow onClosed={handleClose} {...item} />
 
         return null

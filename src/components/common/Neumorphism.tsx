@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { BACKGROUND_COLOR } from '../utils/constants'
+import { BACKGROUND_COLOR } from '../../utils/constants'
 import color from 'color'
 
 interface NeumorphismProps {

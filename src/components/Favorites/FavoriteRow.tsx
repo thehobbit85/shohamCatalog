@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { scaleText } from '../../utils/utils'
-import { Neumorphism } from '../Neumorphism'
+import { Neumorphism } from '../common/Neumorphism'
 import { BACKGROUND_COLOR } from '../../utils/constants'
-import { ThemedText } from '../ThemedText'
-import { RemoveButton } from './RemoveButton'
-import { FavoritesContext } from '../../context'
+import { ThemedText } from '../common/ThemedText'
+import { RemoveButton } from '../buttons/RemoveButton'
+import { FavoritesContext } from '../../providers/Favorites'
 
 interface FavoriteRowProps {
   name: string

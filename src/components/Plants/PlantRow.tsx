@@ -4,18 +4,19 @@ import { PlantData } from '../../types'
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
 import { scaleText } from '../../utils/utils'
-import { Neumorphism } from '../Neumorphism'
-import { BACKGROUND_COLOR, GOOGLE_DRIVE_URI } from '../../utils/constants'
-import { ThemedText } from '../ThemedText'
-import { AddButton } from './AddButton'
-import { TranslationContext, FavoritesContext } from '../../context'
+import { Neumorphism } from '../common/Neumorphism'
+import { BACKGROUND_COLOR } from '../../utils/constants'
+import { ThemedText } from '../common/ThemedText'
+import { AddButton } from '../buttons/AddButton'
+import { TranslationContext } from '../../providers/Translations'
+import { FavoritesContext } from '../../providers/Favorites'
 
 interface PlantRowProps {
   data: PlantData
 }
 
 export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
-  const { id, name, potter, price, colors, imageId, amount } = data
+  const { id, name, price, colors, imageUri, amount } = data
   const translations = useContext(TranslationContext)
   const [favorites, setFavorites] = useContext(FavoritesContext)
   const plantId = `${id}-${name}`
@@ -26,15 +27,20 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
         <View style={styles.leftPart}>
           <CachedImage
             resizeMode="center"
-            source={{ uri: `${GOOGLE_DRIVE_URI}${imageId ?? ''}` }}
+            source={{ uri: imageUri }}
             style={styles.image}
           />
           <AddButton
             selected={favorites[plantId] != null}
-            onSelected={() => {
-              const newFavorites = { ...favorites }
-              Object.assign(newFavorites, { [plantId]: data })
-              setFavorites(newFavorites)
+            onSelected={(isSelected) => {
+              if (isSelected) {
+                const newFavorites = { ...favorites, [plantId]: data }
+                setFavorites(newFavorites)
+              }
+              if (!isSelected) {
+                const { [plantId]: _, ...rest } = favorites
+                setFavorites(rest)
+              }
             }}
           />
         </View>
@@ -47,12 +53,6 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
             <ThemedText
               style={styles.fixedText}
             >{`${translations?.id} - `}</ThemedText>
-          </View>
-          <View style={styles.textRow}>
-            <ThemedText style={styles.dynamicText}>{potter}</ThemedText>
-            <ThemedText
-              style={styles.fixedText}
-            >{`${translations?.potter} - `}</ThemedText>
           </View>
           <View style={styles.textRow}>
             <ThemedText style={styles.dynamicText}>{`₪${price.toFixed(
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontSize: scaleText(24)
   },
   textRow: {
-    marginTop: scaleText(4),
+    marginTop: scaleText(6),
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },

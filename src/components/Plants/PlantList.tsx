@@ -6,7 +6,7 @@ import { scaleText } from '../../utils/utils'
 import { PlantRow } from './PlantRow'
 import Animated, { SlideInDown } from 'react-native-reanimated'
 import { PlantsData } from '../../types'
-import { PlantsContext } from '../../context'
+import { PlantsContext } from '../../providers/Plants'
 
 interface PlantListProps {
   type: string

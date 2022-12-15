@@ -1,4 +1,4 @@
-import { ThemedText } from '../ThemedText'
+import { ThemedText } from '../common/ThemedText'
 import { useHandler } from '../../hooks/useHandler'
 import {
   PHONE_NUMBER,
@@ -7,7 +7,7 @@ import {
 } from '../../utils/constants'
 import React from 'react'
 import { Linking, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import { Neumorphism } from '../Neumorphism'
+import { Neumorphism } from '../common/Neumorphism'
 
 import Animated, { SlideInDown } from 'react-native-reanimated'
 import { scaleText } from '../../utils/utils'

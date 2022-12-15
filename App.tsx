@@ -1,15 +1,13 @@
 import React, { useCallback } from 'react'
 
 import { Application } from './src/index'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { View } from 'react-native'
-import { Context } from './src/context'
+import { Providers } from './src/providers/Providers'
 
 SplashScreen.preventAutoHideAsync().catch((error) => console.log(error))
-
-const queryClient = new QueryClient()
 
 export default function App(): JSX.Element | null {
   const [fontsLoaded] = useFonts({
@@ -28,11 +26,9 @@ export default function App(): JSX.Element | null {
 
   return (
     <View onLayout={onLayoutRootView}>
-      <QueryClientProvider client={queryClient}>
-        <Context>
-          <Application />
-        </Context>
-      </QueryClientProvider>
+      <Providers>
+        <Application />
+      </Providers>
     </View>
   )
 }

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { scaleText } from '../../utils/utils'
 import { FavoriteRow } from './FavoriteRow'
-import { FavoritesContext } from '../../context'
+import { FavoritesContext } from '../../providers/Favorites'
 
 export const FavoritesList = (): JSX.Element => {
   const [favorites] = useContext(FavoritesContext)

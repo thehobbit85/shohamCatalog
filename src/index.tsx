@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,11 +12,13 @@ import { Favorites } from './components/Favorites/Favorites'
 import { PlantList } from './components/Plants/PlantList'
 import { Title } from './components/Title'
 import { TypeList } from './components/Types/TypeList'
+import { TranslationContext } from './providers/Translations'
 
 const { height } = Dimensions.get('window')
 
 export const Application = (): JSX.Element => {
   const [type, setType] = useState<string>()
+  const translations = useContext(TranslationContext)
   const backgroundStyle = useMemo(
     () => [styles.background, type == null ? styles.backgroundBorders : {}],
     [type]
@@ -38,7 +40,7 @@ export const Application = (): JSX.Element => {
         </View>
       ) : null}
 
-      {type == null ? <Title /> : null}
+      {type == null ? <Title title={translations.brandName} /> : null}
       <TypeList onSelected={setType} />
     </SafeAreaView>
   )

@@ -1,19 +1,20 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, TextStyle, LayoutChangeEvent } from 'react-native'
-import { useHandler } from '../hooks/useHandler'
-import { scaleText } from '../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
+import { scaleText } from '../../utils/utils'
 
 interface ThemedTextProps {
   children: any
-  style?: TextStyle
+  style?: TextStyle | TextStyle[]
 }
 
 export const ThemedText = ({
   children,
-  style = {}
+  style = {},
+  ...props
 }: ThemedTextProps): JSX.Element => {
-  const styleRef = useRef<TextStyle>({ ...style })
-  const [styleState, setStyleState] = useState({ ...style })
+  const [styleState, setStyleState] = useState<any>({})
+  const styleArray = Array.isArray(style) ? style : [style]
 
   const handleLayout = useHandler(
     ({
@@ -21,22 +22,26 @@ export const ThemedText = ({
         layout: { height, width }
       }
     }: LayoutChangeEvent) => {
-      if (styleRef.current.height == null) {
-        styleRef.current.height = height * 1.1
+      const newStyle = { ...styleState }
+      if (newStyle.height == null) {
+        newStyle.height = height * 1.1
       }
-      if (styleRef.current.width == null) {
-        styleRef.current.width = width * 1.2
+      if (newStyle.width == null) {
+        newStyle.width = width * 1.2
       }
-      setStyleState(styleRef.current)
+      setStyleState(newStyle)
     }
   )
 
-  return (
+  return children == null ? (
+    <Text>{''}</Text>
+  ) : (
     <Text
       onLayout={handleLayout}
       adjustsFontSizeToFit={true}
       numberOfLines={1}
-      style={{ ...styles.text, ...styleState }}
+      style={[styles.text, styleState, ...styleArray]}
+      {...props}
     >
       {children}
     </Text>

@@ -14,7 +14,7 @@ import { TouchableOpacity } from 'react-native'
 
 const AnimatedLine = Animated.createAnimatedComponent(Line)
 
-interface CollapseCloseIconProps {
+interface ExpendButtonProps {
   color?: string
   size?: number
   strokeWidth?: string
@@ -23,14 +23,14 @@ interface CollapseCloseIconProps {
   initAngle?: number
 }
 
-export const ExpendIcon = ({
+export const ExpendButton = ({
   size = scaleText(36),
   onPress,
   color = 'white',
   strokeWidth = `${size / 3.5}`,
   open,
   initAngle = 0.1
-}: CollapseCloseIconProps): JSX.Element => {
+}: ExpendButtonProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const angle = useSharedValue(initAngle)
 

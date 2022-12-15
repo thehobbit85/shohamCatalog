@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
-import { Neumorphism } from '../Neumorphism'
+import { Neumorphism } from '../common/Neumorphism'
 import { BACKGROUND_COLOR } from '../../utils/constants'
 import { scaleText } from '../../utils/utils'
 
 interface AddButtonProps {
-  onSelected: () => void
+  onSelected: (isSelected: boolean) => void
   selected?: boolean
 }
 
@@ -19,11 +19,10 @@ export const AddButton = ({
   return (
     <Neumorphism revert={isSelected}>
       <TouchableOpacity
-        disabled={isSelected}
         style={styles.button}
         onPress={() => {
-          setIsSelected(true)
-          if (onSelected != null) onSelected()
+          setIsSelected(!isSelected)
+          if (onSelected != null) onSelected(!isSelected)
         }}
       >
         <AntDesign

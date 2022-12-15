@@ -7,7 +7,7 @@ import { scaleText } from '../../utils/utils'
 import { Neumorphism } from '../common/Neumorphism'
 import { BACKGROUND_COLOR } from '../../utils/constants'
 import { ThemedText } from '../common/ThemedText'
-import { AddButton } from '../buttons/AddButton'
+import { HeartButton } from '../buttons/HeartButton'
 import { TranslationContext } from '../../providers/Translations'
 import { FavoritesContext } from '../../providers/Favorites'
 
@@ -30,7 +30,7 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
             source={{ uri: imageUri }}
             style={styles.image}
           />
-          <AddButton
+          <HeartButton
             selected={favorites[plantId] != null}
             onSelected={(isSelected) => {
               if (isSelected) {

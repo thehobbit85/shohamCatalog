@@ -4,7 +4,7 @@ import { scaleText } from '../../utils/utils'
 import { Neumorphism } from '../common/Neumorphism'
 import { BACKGROUND_COLOR } from '../../utils/constants'
 import { ThemedText } from '../common/ThemedText'
-import { RemoveButton } from '../buttons/RemoveButton'
+import { TrashButton } from '../buttons/TrashButton'
 import { FavoritesContext } from '../../providers/Favorites'
 
 interface FavoriteRowProps {
@@ -19,7 +19,7 @@ export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
   return (
     <Neumorphism>
       <View style={styles.row}>
-        <RemoveButton
+        <TrashButton
           selected={true}
           onSelected={() => {
             const newFavorites = { ...favorites }

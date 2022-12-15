@@ -1,6 +1,6 @@
+import EStyleSheet from 'react-native-extended-stylesheet'
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { BACKGROUND_COLOR } from '../../utils/constants'
+import { View } from 'react-native'
 import color from 'color'
 
 interface NeumorphismProps {
@@ -15,7 +15,7 @@ export class Neumorphism extends React.PureComponent<NeumorphismProps> {
   render(): JSX.Element {
     const {
       children,
-      backgroundColor = BACKGROUND_COLOR,
+      backgroundColor = '#084b3f',
       revert = false,
       style = {}
     } = this.props
@@ -43,7 +43,7 @@ export class Neumorphism extends React.PureComponent<NeumorphismProps> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   lightShadow: {
     shadowOffset: { width: -6, height: -6 },
     shadowRadius: 8,

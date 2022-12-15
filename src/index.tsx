@@ -1,18 +1,18 @@
-import React, { useContext, useState } from 'react'
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
   Dimensions,
   Platform,
-  StatusBar
+  SafeAreaView,
+  StatusBar,
+  View
 } from 'react-native'
-import { BACKGROUND_COLOR } from './utils/constants'
+import React, { useContext, useState } from 'react'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { Favorites } from './components/Favorites/Favorites'
 import { PlantList } from './components/Plants/PlantList'
 import { Title } from './components/Title'
-import { TypeList } from './components/Types/TypeList'
 import { TranslationContext } from './providers/Translations'
+import { TypeList } from './components/Types/TypeList'
 
 const { height } = Dimensions.get('window')
 
@@ -22,7 +22,7 @@ export const Application = (): JSX.Element => {
 
   return (
     <SafeAreaView>
-      <View style={styles.background} />
+      <View style={[styles.background]} />
       {type == null || type === 'Favorites' ? (
         <Favorites
           onSelected={(open: boolean) =>
@@ -43,10 +43,10 @@ export const Application = (): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   background: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     borderRightColor: 'black',
     borderLeftColor: 'black',
     borderLeftWidth: 8,

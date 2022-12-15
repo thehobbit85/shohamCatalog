@@ -1,26 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, Dimensions, View, TouchableOpacity } from 'react-native'
-import { scaleText } from '../../utils/utils'
-
-import { BACKGROUND_COLOR } from '../../utils/constants'
 import Animated, {
+  Easing,
+  Extrapolation,
   SlideInRight,
   SlideOutRight,
-  useSharedValue,
-  Easing,
-  withTiming,
-  useAnimatedStyle,
   interpolate,
-  Extrapolation
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
 } from 'react-native-reanimated'
-import { Neumorphism } from '../common/Neumorphism'
+import { Dimensions, TouchableOpacity, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+
 import { AntDesign } from '@expo/vector-icons'
-import { useHandler } from '../../hooks/useHandler'
-import { FavoritesList } from './FavoritesList'
-import { ThemedText } from '../common/ThemedText'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { ExpendButton } from '../buttons/ExpendButton'
-import { FavoritesFooter } from './FavoritesFooter'
 import { FavoritesContext } from '../../providers/Favorites'
+import { FavoritesFooter } from './FavoritesFooter'
+import { FavoritesList } from './FavoritesList'
+import { Neumorphism } from '../common/Neumorphism'
+import { ThemedText } from '../common/ThemedText'
+import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 const { width, height } = Dimensions.get('window')
 
@@ -108,14 +108,14 @@ export const Favorites = ({
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   itemContainer: {
     alignSelf: 'flex-end',
     marginRight: scaleText(-56),
     marginTop: scaleText(8),
     marginBottom: scaleText(16),
     borderRadius: 16,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: scaleText(56 * 2),

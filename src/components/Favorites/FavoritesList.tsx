@@ -1,8 +1,10 @@
+import { FlatList, View } from 'react-native'
 import React, { useContext } from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
-import { scaleText } from '../../utils/utils'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoriteRow } from './FavoriteRow'
 import { FavoritesContext } from '../../providers/Favorites'
+import { scaleText } from '../../utils/utils'
 
 export const FavoritesList = (): JSX.Element => {
   const [favorites] = useContext(FavoritesContext)
@@ -19,7 +21,7 @@ export const FavoritesList = (): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   list: {
     height: '100%',
     flexDirection: 'column',

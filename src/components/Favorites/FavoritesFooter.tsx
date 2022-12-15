@@ -1,16 +1,14 @@
-import { ThemedText } from '../common/ThemedText'
-import { useHandler } from '../../hooks/useHandler'
-import {
-  PHONE_NUMBER,
-  EMAIL_ADDRESS,
-  BACKGROUND_COLOR
-} from '../../utils/constants'
-import React from 'react'
-import { Linking, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import { Neumorphism } from '../common/Neumorphism'
-
 import Animated, { SlideInDown } from 'react-native-reanimated'
+import { Dimensions, Linking, TouchableOpacity } from 'react-native'
+import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../utils/constants'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { Neumorphism } from '../common/Neumorphism'
+import React from 'react'
+import { ThemedText } from '../common/ThemedText'
 import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
+
 const { height } = Dimensions.get('window')
 
 export const FavoritesFooter = (): JSX.Element => {
@@ -44,10 +42,10 @@ export const FavoritesFooter = (): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   footer: {
     borderRadius: scaleText(16),
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     position: 'absolute',
     bottom: height / 6,
     width: '100%',
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
     padding: scaleText(10),
     marginBottom: scaleText(16),
     justifyContent: 'center',
-    backgroundColor: BACKGROUND_COLOR
+    backgroundColor: '$backgroundColor'
   },
   leftButton: { marginLeft: scaleText(16), marginRight: scaleText(8) },
   rightButton: { marginLeft: scaleText(8), marginRight: scaleText(16) },

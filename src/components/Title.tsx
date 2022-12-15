@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, Dimensions, Image } from 'react-native'
-
-import { scaleText } from '../utils/utils'
-import { ThemedText } from './common/ThemedText'
-
 import Animated, { SlideInLeft } from 'react-native-reanimated'
+import { Dimensions, Image } from 'react-native'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
+import React from 'react'
+import { ThemedText } from './common/ThemedText'
+import { scaleText } from '../utils/utils'
 
 const { height } = Dimensions.get('window')
 
@@ -17,7 +17,7 @@ export const Title = ({ title }: { title: string }): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   header: {
     zIndex: -1,
     flexDirection: 'row',

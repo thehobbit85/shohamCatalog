@@ -1,6 +1,6 @@
+import { FavoritesCache } from '../types'
 import React from 'react'
 import { useAsyncStorage } from '../hooks/useAsyncStorage'
-import { FavoritesCache } from '../types'
 
 export const FavoritesContext = React.createContext<[FavoritesCache, Function]>(
   [{}, () => {}]

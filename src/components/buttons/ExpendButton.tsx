@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-
 import Animated, {
   Easing,
   useAnimatedProps,
+  useAnimatedStyle,
   useSharedValue,
-  withTiming,
-  useAnimatedStyle
+  withTiming
 } from 'react-native-reanimated'
 import { Line, Svg } from 'react-native-svg'
+import React, { useEffect, useState } from 'react'
+
+import { TouchableOpacity } from 'react-native'
 import { scaleText } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
-import { TouchableOpacity } from 'react-native'
 
 const AnimatedLine = Animated.createAnimatedComponent(Line)
 

@@ -1,11 +1,11 @@
+import * as SplashScreen from 'expo-splash-screen'
+
 import React, { useCallback } from 'react'
 
 import { Application } from './src/index'
-
-import { useFonts } from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
-import { View } from 'react-native'
 import { Providers } from './src/providers/Providers'
+import { View } from 'react-native'
+import { useFonts } from 'expo-font'
 
 SplashScreen.preventAutoHideAsync().catch((error) => console.log(error))
 

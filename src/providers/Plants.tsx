@@ -1,9 +1,9 @@
-import React from 'react'
+import { PlantData, PlantsData, TypeData } from '../types'
 
-import { useCachedQuery } from '../hooks/useCachedQuery'
-import { TypeData, PlantsData, PlantData } from '../types'
+import React from 'react'
 import { TYPES_TAB_NAME } from '../utils/constants'
 import { fetchSheetTab } from '../utils/fetchers'
+import { useCachedQuery } from '../hooks/useCachedQuery'
 
 interface RemotePlantData {
   id: string

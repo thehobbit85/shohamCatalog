@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { PlantData } from '../../types'
+
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
-import { scaleText } from '../../utils/utils'
-import { Neumorphism } from '../common/Neumorphism'
-import { BACKGROUND_COLOR } from '../../utils/constants'
-import { ThemedText } from '../common/ThemedText'
-import { HeartButton } from '../buttons/HeartButton'
-import { TranslationContext } from '../../providers/Translations'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoritesContext } from '../../providers/Favorites'
+import { HeartButton } from '../buttons/HeartButton'
+import { Neumorphism } from '../common/Neumorphism'
+import { PlantData } from '../../types'
+import { ThemedText } from '../common/ThemedText'
+import { TranslationContext } from '../../providers/Translations'
+import { View } from 'react-native'
+import { scaleText } from '../../utils/utils'
 
 interface PlantRowProps {
   data: PlantData
@@ -82,11 +83,11 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   row: {
     flexDirection: 'row',
     borderRadius: scaleText(10),
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     marginHorizontal: scaleText(16),
     paddingVertical: scaleText(8),
     marginTop: scaleText(16),
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   image: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     borderRadius: scaleText(10),
     height: scaleText(24) * 4,
     marginBottom: scaleText(8)

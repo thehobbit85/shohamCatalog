@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+
 import { AntDesign } from '@expo/vector-icons'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
-import { BACKGROUND_COLOR } from '../../utils/constants'
+import { TouchableOpacity } from 'react-native'
 import { scaleText } from '../../utils/utils'
 
 interface HeartButtonProps {
@@ -36,9 +37,9 @@ export const HeartButton = ({
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   button: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     borderRadius: scaleText(12),
     alignItems: 'center',
     paddingVertical: 8,

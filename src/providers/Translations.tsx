@@ -1,9 +1,8 @@
 import React from 'react'
-
-import { useCachedQuery } from '../hooks/useCachedQuery'
-import { Translations } from '../types'
 import { TRANSLATION_TAB_NAME } from '../utils/constants'
+import { Translations } from '../types'
 import { fetchSheetTab } from '../utils/fetchers'
+import { useCachedQuery } from '../hooks/useCachedQuery'
 
 interface RemoteTranslation {
   english: string

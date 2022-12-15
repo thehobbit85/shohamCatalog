@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext } from 'react'
-// @ts-expect-error
-import CachedImage from 'react-native-expo-cached-image'
-import { View, StyleSheet, Dimensions } from 'react-native'
-import { scaleText } from '../../utils/utils'
-
 import Animated, {
   Easing,
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  interpolate,
   Extrapolation,
   SlideInLeft,
-  SlideOutLeft
+  SlideOutLeft,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
 } from 'react-native-reanimated'
-import { ThemedText } from '../common/ThemedText'
-import { Neumorphism } from '../common/Neumorphism'
-import { BACKGROUND_COLOR } from '../../utils/constants'
+import { Dimensions, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import { Translations, TypeData } from '../../types'
-import { useHandler } from '../../hooks/useHandler'
+
+// @ts-expect-error
+import CachedImage from 'react-native-expo-cached-image'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { ExpendButton } from '../buttons/ExpendButton'
+import { Neumorphism } from '../common/Neumorphism'
+import { ThemedText } from '../common/ThemedText'
 import { TranslationContext } from '../../providers/Translations'
+import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 const { height, width } = Dimensions.get('window')
 
@@ -140,7 +140,7 @@ export const TypeRow = ({
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     marginTop: scaleText(24),
     marginLeft: scaleText(-36),
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: scaleText(14),
     height: height / 5,
     borderRadius: 24,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end'

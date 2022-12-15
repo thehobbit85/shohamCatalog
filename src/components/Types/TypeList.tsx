@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react'
-import { StyleSheet, FlatList } from 'react-native'
+import React, { useContext, useState } from 'react'
 
-import { TypeRow } from '../Types/TypeRow'
-
-import { useHandler } from '../../hooks/useHandler'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { FlatList } from 'react-native'
 import { TypeData } from '../../types'
+import { TypeRow } from '../Types/TypeRow'
 import { TypesContext } from '../../providers/Plants'
+import { useHandler } from '../../hooks/useHandler'
 
 export interface TypeListProps {
   onSelected: (type: string | undefined) => void
@@ -41,7 +41,7 @@ export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   list: {
     overflow: 'visible',
     height: '100%'

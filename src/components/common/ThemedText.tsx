@@ -1,7 +1,9 @@
+import { LayoutChangeEvent, Text, TextStyle } from 'react-native'
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextStyle, LayoutChangeEvent } from 'react-native'
-import { useHandler } from '../../hooks/useHandler'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 interface ThemedTextProps {
   children: any
@@ -48,7 +50,7 @@ export const ThemedText = ({
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   text: {
     paddingTop: scaleText(1),
     paddingRight: scaleText(4),

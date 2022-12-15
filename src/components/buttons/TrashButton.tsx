@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { MaterialIcons } from '@expo/vector-icons'
-import { BACKGROUND_COLOR } from '../../utils/constants'
 import { scaleText } from '../../utils/utils'
 
 interface TrashButtonProps {
@@ -30,9 +31,9 @@ export const TrashButton = ({
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   button: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     borderRadius: scaleText(12),
     alignItems: 'center',
     marginLeft: scaleText(4),

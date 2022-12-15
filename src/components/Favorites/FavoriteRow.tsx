@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { scaleText } from '../../utils/utils'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { FavoritesContext } from '../../providers/Favorites'
 import { Neumorphism } from '../common/Neumorphism'
-import { BACKGROUND_COLOR } from '../../utils/constants'
 import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
-import { FavoritesContext } from '../../providers/Favorites'
+import { View } from 'react-native'
+import { scaleText } from '../../utils/utils'
 
 interface FavoriteRowProps {
   name: string
@@ -36,13 +37,13 @@ export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: scaleText(10),
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '$backgroundColor',
     marginHorizontal: scaleText(16),
     paddingVertical: scaleText(8),
     marginBottom: scaleText(8),

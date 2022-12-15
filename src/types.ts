@@ -25,3 +25,7 @@ export interface Translations {
 export interface FavoritesCache {
   [key: string]: PlantData
 }
+
+export interface Theme {
+  [key: string]: any
+}

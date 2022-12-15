@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
-import { TypeData } from '../../types'
+import { TypeData } from '../../utils/types'
 import { TypeRow } from '../Types/TypeRow'
 import { TypesContext } from '../../providers/Plants'
 import { useHandler } from '../../hooks/useHandler'

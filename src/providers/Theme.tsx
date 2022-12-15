@@ -1,42 +1,51 @@
 import React, { useEffect } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Theme } from '../types'
+import { Theme } from '../utils/types'
 import { useAsyncStorage } from '../hooks/useAsyncStorage'
+import { useHandler } from '../hooks/useHandler'
 
-const defaultTheme = {
-  $backgroundColor: '#084b3f',
-  $theme: 'default'
+const Themes: { [key: string]: object } = {
+  default: {
+    $backgroundColor: '#084b3f'
+  },
+  white: {
+    $backgroundColor: 'white'
+  }
 }
 
-// useEffect(() => {
-//   const a = setInterval(() => {
-//     i = !i
-//     setTheme({
-//       $backgroundColor: i ? '#084b3f' : 'white',
-//       $theme: i ? 'default' : 'white'
-//     })
-//   }, 100)
-//   return () => clearInterval(a)
-// })
+const pickTheme = (theme: string): object => ({
+  ...Themes?.[theme],
+  $theme: theme
+})
 
-EStyleSheet.build(defaultTheme)
+EStyleSheet.build(Themes.default)
 
-export const ThemeContext = React.createContext<[Theme, Function]>([
-  {},
-  () => {}
-])
+export const ThemeContext = React.createContext<{
+  theme: Theme
+  setTheme: Function
+  selectTheme: Function
+}>({
+  theme: {},
+  setTheme: () => {},
+  selectTheme: () => {}
+})
 
 export const ThemeContextProvider = ({ children }: any): JSX.Element => {
-  const [theme, setTheme] = useAsyncStorage<Theme>('theme', defaultTheme)
+  const [theme, setTheme] = useAsyncStorage<Theme>('theme', Themes.default)
+
+  const selectTheme = useHandler((name: string): void =>
+    setTheme(pickTheme(name))
+  )
 
   useEffect(() => {
-    console.log('21. theme', JSON.stringify(theme, null, 2))
     EStyleSheet.build(theme)
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={[theme ?? {}, setTheme]}>
+    <ThemeContext.Provider
+      value={{ theme: theme ?? {}, setTheme, selectTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   )

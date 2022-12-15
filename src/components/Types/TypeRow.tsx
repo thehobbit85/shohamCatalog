@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { Dimensions, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { Translations, TypeData } from '../../types'
+import { Translations, TypeData } from '../../utils/types'
 
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'

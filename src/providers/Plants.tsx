@@ -1,4 +1,4 @@
-import { PlantData, PlantsData, TypeData } from '../types'
+import { PlantData, PlantsData, TypeData } from '../utils/types'
 
 import React from 'react'
 import { TYPES_TAB_NAME } from '../utils/constants'

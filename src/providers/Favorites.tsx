@@ -1,4 +1,4 @@
-import { FavoritesCache } from '../types'
+import { FavoritesCache } from '../utils/types'
 import React from 'react'
 import { useAsyncStorage } from '../hooks/useAsyncStorage'
 

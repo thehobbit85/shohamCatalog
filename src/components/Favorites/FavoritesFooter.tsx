@@ -1,11 +1,11 @@
 import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated'
-import { Dimensions, Linking, TouchableOpacity } from 'react-native'
+import { Dimensions, Linking } from 'react-native'
 import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../utils/constants'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { NeuButton } from '../buttons/NeuButton'
 import { Neumorphism } from '../common/Neumorphism'
 import React from 'react'
-import { ThemedText } from '../common/ThemedText'
 import { scaleText } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
@@ -28,16 +28,16 @@ export const FavoritesFooter = (): JSX.Element => {
         entering={SlideInDown.delay(250).duration(250)}
         exiting={SlideOutDown.duration(250)}
       >
-        <Neumorphism style={{ ...styles.button, ...styles.leftButton }}>
-          <TouchableOpacity onPress={sendEmail}>
-            <ThemedText style={styles.text}>{'שלח מייל'}</ThemedText>
-          </TouchableOpacity>
-        </Neumorphism>
-        <Neumorphism style={{ ...styles.button, ...styles.rightButton }}>
-          <TouchableOpacity onPress={callPhoneNumber}>
-            <ThemedText style={styles.text}>{'התקשר'}</ThemedText>
-          </TouchableOpacity>
-        </Neumorphism>
+        <NeuButton
+          style={styles.leftButton}
+          onPress={sendEmail}
+          title={'שלח מייל'}
+        />
+        <NeuButton
+          style={styles.rightButton}
+          onPress={callPhoneNumber}
+          title={'התקשר'}
+        />
       </Animated.View>
     </Neumorphism>
   )

@@ -25,7 +25,7 @@ export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
 
   return (
     <FlatList
-      scrollEnabled={false}
+      scrollEnabled={typeSelected == null}
       style={styles.list}
       data={plantTypes}
       renderItem={({ item }) => {

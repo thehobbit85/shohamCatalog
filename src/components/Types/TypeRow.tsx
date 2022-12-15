@@ -75,7 +75,7 @@ export const TypeRow = ({
 
   // Title Animation
   const typeRight = width / 2.5
-  const typeTop = scaleText(64)
+  const typeTop = scaleText(80)
   const typeAnimatedStyle = useAnimatedStyle(() => ({
     marginTop: open.value * typeTop,
     right: -open.value * typeRight,
@@ -108,13 +108,9 @@ export const TypeRow = ({
       >
         <View style={styles.column}>
           <Animated.View style={[styles.type, typeAnimatedStyle]}>
-            {pressed ? (
-              <ThemedText
-                style={styles.title}
-              >{`${translations[id]} - ${potType}`}</ThemedText>
-            ) : (
-              <ThemedText>{translations[id]}</ThemedText>
-            )}
+            <ThemedText style={styles.title}>
+              {pressed ? `${translations[id]} - ${potType}` : translations[id]}
+            </ThemedText>
           </Animated.View>
 
           {!pressed ? (
@@ -176,6 +172,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   potType: {
+    marginTop: scaleText(8),
     fontSize: scaleText(24)
   },
   arrow: {

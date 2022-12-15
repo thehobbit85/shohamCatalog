@@ -56,14 +56,11 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute'
   },
-
   plantList: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    zIndex: 1,
     position: 'absolute',
-    marginTop: height / 7,
-    height: (6 * height) / 7,
-    width: '100%'
+    height: (height * 5) / 6,
+    width: '100%',
+    zIndex: 1,
+    marginTop: height / 6
   }
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TRANSLATION_TAB_NAME } from '../utils/constants'
+import { TRANSLATION_TAB_NAME } from '../theme/constants'
 import { Translations } from '../@types/types'
 import { fetchSheetTab } from '../utils/fetchers'
 import { useCachedQuery } from '../hooks/useCachedQuery'

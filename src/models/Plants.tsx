@@ -1,7 +1,7 @@
 import { PlantData, PlantsData, TypeData } from '../@types/types'
 
 import React from 'react'
-import { TYPES_TAB_NAME } from '../utils/constants'
+import { TYPES_TAB_NAME } from '../theme/constants'
 import { fetchSheetTab } from '../utils/fetchers'
 import { useCachedQuery } from '../hooks/useCachedQuery'
 

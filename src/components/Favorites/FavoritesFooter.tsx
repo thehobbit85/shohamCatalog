@@ -1,6 +1,6 @@
 import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated'
 import { Dimensions, Linking } from 'react-native'
-import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../utils/constants'
+import { EMAIL_ADDRESS, PHONE_NUMBER } from '../../theme/constants'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { NeuButton } from '../buttons/NeuButton'

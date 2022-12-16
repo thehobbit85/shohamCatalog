@@ -1,4 +1,4 @@
-import { OPENSHEET_URI, SPREADSHEET_ID } from './constants'
+import { OPENSHEET_URI, SPREADSHEET_ID } from '../theme/constants'
 
 export const fetchJson = async (uri: string): Promise<any> =>
   await fetch(uri)

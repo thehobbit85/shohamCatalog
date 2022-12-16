@@ -34,7 +34,6 @@ const styles = EStyleSheet.create({
     backgroundColor: '$backgroundColor'
   },
   text: {
-    fontSize: '100%',
     height: '100%',
     width: '100%'
   }

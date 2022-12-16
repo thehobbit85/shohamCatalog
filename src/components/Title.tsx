@@ -11,7 +11,10 @@ const { height } = Dimensions.get('window')
 export const Title = ({ title }: { title: string }): JSX.Element => {
   return (
     <Animated.View entering={SlideInLeft.duration(250)} style={styles.header}>
-      <Image style={styles.logo} source={require('../../assets/flower.png')} />
+      <Image
+        style={styles.logo}
+        source={require('../../assets/images/flower.png')}
+      />
       <ThemedText style={styles.title}>{title}</ThemedText>
     </Animated.View>
   )

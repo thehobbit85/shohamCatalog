@@ -7,6 +7,7 @@ import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
 import { View } from 'react-native'
 import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 interface FavoriteRowProps {
   name: string
@@ -17,18 +18,17 @@ export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
   const [favorites, setFavorites] = useContext(FavoritesContext)
   const plantId = `${id}-${name}`
 
+  const handlePress = useHandler(() => {
+    const newFavorites = { ...favorites }
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+    delete newFavorites[plantId]
+    setFavorites(newFavorites)
+  })
+
   return (
     <Neumorphism>
       <View style={styles.row}>
-        <TrashButton
-          selected={true}
-          onSelected={() => {
-            const newFavorites = { ...favorites }
-            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete newFavorites[plantId]
-            setFavorites(newFavorites)
-          }}
-        />
+        <TrashButton selected={true} onSelected={handlePress} />
         <View style={styles.nameRow}>
           <ThemedText style={styles.nameText}>{name}</ThemedText>
         </View>

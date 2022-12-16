@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import CachedImage from 'react-native-expo-cached-image'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoritesContext } from '../../providers/Favorites'
-import { HeartButton } from '../buttons/HeartButton'
+import { LikeButton } from '../buttons/LikeButton'
 import { Neumorphism } from '../common/Neumorphism'
 import { PlantData } from '../../utils/types'
 import { ThemedText } from '../common/ThemedText'
@@ -31,7 +31,7 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
             source={{ uri: imageUri }}
             style={styles.image}
           />
-          <HeartButton
+          <LikeButton
             selected={favorites[plantId] != null}
             onSelected={(isSelected) => {
               if (isSelected) {

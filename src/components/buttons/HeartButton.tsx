@@ -5,6 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import { TouchableOpacity } from 'react-native'
 import { scaleText } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 interface HeartButtonProps {
   onSelected: (isSelected: boolean) => void
@@ -17,16 +18,15 @@ export const HeartButton = ({
 }: HeartButtonProps): JSX.Element => {
   const [isSelected, setIsSelected] = useState(selected)
 
+  const handlePress = useHandler(() => {
+    const newSelection = !isSelected
+    setIsSelected(newSelection)
+    if (onSelected != null) onSelected(newSelection)
+  })
+
   return (
     <Neumorphism revert={isSelected}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          const newSelection = !isSelected
-          setIsSelected(newSelection)
-          if (onSelected != null) onSelected(newSelection)
-        }}
-      >
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
         <AntDesign
           name="heart"
           size={32}

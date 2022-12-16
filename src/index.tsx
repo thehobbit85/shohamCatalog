@@ -23,6 +23,7 @@ export const Application = (): JSX.Element => {
   return (
     <SafeAreaView>
       <View style={[styles.background]} />
+
       {type == null || type === 'Favorites' ? (
         <Favorites
           onSelected={(open: boolean) =>

@@ -62,8 +62,8 @@ const styles = EStyleSheet.create({
   text: {
     paddingTop: scaleSize(1),
     paddingRight: '$paddings.xsmall',
-    textAlign: 'right',
-    fontFamily: 'GveretLevin-Regular',
+    textAlign: '$textAlign',
+    fontFamily: '$fontFamily',
     fontSize: '$textSizes.h2',
     color: '$colors.text'
   }

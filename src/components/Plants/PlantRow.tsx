@@ -125,7 +125,6 @@ const styles = EStyleSheet.create({
   },
   dynamicText: {
     flex: 0,
-    textAlign: 'right',
     fontSize: '$textSizes.h4'
   },
   leftPart: {

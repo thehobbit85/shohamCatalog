@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { View } from 'react-native'
 import color from 'color'
+import { useTheme } from '../../theme/theme'
 
 interface NeumorphismProps {
   children: any
@@ -13,13 +14,11 @@ interface NeumorphismProps {
 }
 
 export const Neumorphism = (props: NeumorphismProps): JSX.Element => {
-  const {
-    children,
-    backgroundColor = EStyleSheet.value('$colors.background'),
-    revert = false,
-    style = {}
-  } = props
+  const { children, revert = false, style = {} } = props
 
+  const { theme } = useTheme()
+
+  const backgroundColor = props.backgroundColor ?? theme?.$colors?.background
   const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
   const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
   const lightStyle = useMemo(
@@ -47,13 +46,19 @@ export const Neumorphism = (props: NeumorphismProps): JSX.Element => {
 
 const styles = EStyleSheet.create({
   outerShadow: {
-    shadowOffset: { width: -6, height: -6 },
-    shadowRadius: 8,
-    shadowOpacity: 1
+    shadowOffset: {
+      width: '$neumorphism.outerShadow.shadowOffset.width',
+      height: '$neumorphism.outerShadow.shadowOffset.height'
+    },
+    shadowRadius: '$neumorphism.outerShadow.shadowRadius',
+    shadowOpacity: '$neumorphism.outerShadow.shadowOpacity'
   },
   innerShadow: {
-    shadowOffset: { width: 6, height: 6 },
-    shadowRadius: 8,
-    shadowOpacity: 1
+    shadowOffset: {
+      width: '$neumorphism.innerShadow.shadowOffset.width',
+      height: '$neumorphism.innerShadow.shadowOffset.height'
+    },
+    shadowRadius: '$neumorphism.innerShadow.shadowRadius',
+    shadowOpacity: '$neumorphism.innerShadow.shadowOpacity'
   }
 })

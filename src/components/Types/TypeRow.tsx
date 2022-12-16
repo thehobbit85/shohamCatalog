@@ -198,7 +198,6 @@ const styles = EStyleSheet.create({
     marginRight: scaleSize(-26)
   },
   title: {
-    textAlign: 'right',
     width: '100%'
   },
   potType: {

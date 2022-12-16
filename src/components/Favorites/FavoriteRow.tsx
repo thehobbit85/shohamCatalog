@@ -62,7 +62,6 @@ const styles = EStyleSheet.create({
   },
   nameText: {
     width: '100%',
-    textAlign: 'right',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     fontSize: '$textSizes.h3'

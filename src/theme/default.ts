@@ -1,6 +1,8 @@
 import { scaleSize } from '../utils/utils'
 
 export const defaultTheme = {
+  $textAlign: 'right',
+  $fontFamily: 'GveretLevin-Regular',
   $colors: {
     background: '#084b3f',
     text: 'white'
@@ -32,5 +34,17 @@ export const defaultTheme = {
     medium: scaleSize(16),
     small: scaleSize(8),
     xsmall: scaleSize(4)
+  },
+  $neumorphism: {
+    outerShadow: {
+      shadowOffset: { width: -6, height: -6 },
+      shadowRadius: 8,
+      shadowOpacity: 1
+    },
+    innerShadow: {
+      shadowOffset: { width: 6, height: 6 },
+      shadowRadius: 8,
+      shadowOpacity: 1
+    }
   }
 }

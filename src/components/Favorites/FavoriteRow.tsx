@@ -1,3 +1,5 @@
+import Animated, { SlideOutRight } from 'react-native-reanimated'
+
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import React from 'react'
@@ -33,12 +35,12 @@ export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
 
   return (
     <Neumorphism>
-      <View style={styles.row}>
+      <Animated.View exiting={SlideOutRight.duration(250)} style={styles.row}>
         <TrashButton selected={true} onSelected={handlePress} />
         <View style={styles.nameRow}>
           <ThemedText style={styles.nameText}>{name}</ThemedText>
         </View>
-      </View>
+      </Animated.View>
     </Neumorphism>
   )
 }

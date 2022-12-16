@@ -1,69 +1,76 @@
-import React, { useRef, useState } from 'react'
-import Rive, { Alignment, Fit, RiveRef } from 'rive-react-native'
+import React, { useMemo, useState } from 'react'
+import Rive, { Alignment, Fit } from 'rive-react-native'
+import { TouchableOpacity, View } from 'react-native'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { TouchableOpacity } from 'react-native'
 import { scaleSize } from '../../utils/utils'
 import { useAssets } from 'expo-asset'
 import { useHandler } from '../../hooks/useHandler'
 
 interface LikeButtonProps {
+  size?: number
   onSelected: (isSelected: boolean) => void
   selected?: boolean
 }
 
 export const LikeButton = ({
   onSelected,
-  selected = false
+  selected = false,
+  size = 70
 }: LikeButtonProps): JSX.Element => {
   const [isSelected, setIsSelected] = useState(selected)
-  const riveRef = useRef<RiveRef>(null)
+  const [animation, setAnimation] = useState(selected ? 'On' : 'Off')
+  const animationStyle = useMemo(
+    () => ({
+      marginTop: scaleSize(size / 7),
+      width: scaleSize(size),
+      height: scaleSize(size)
+    }),
+    [size]
+  )
+
   const [assets] = useAssets([
     require('../../../assets/animations/likeButton.riv')
   ])
   const animationUrl = assets?.[0].localUri
 
   const handlePress = useHandler(() => {
-    riveRef?.current?.play()
     const newSelection = !isSelected
+
+    setAnimation(newSelection ? 'Like' : 'Dislike')
     setIsSelected(newSelection)
     if (onSelected != null) onSelected(newSelection)
   })
 
   return (
-    <TouchableOpacity style={styles.button} onPress={handlePress}>
+    <View style={styles.button}>
+      <TouchableOpacity style={styles.touchable} onPress={handlePress} />
       {animationUrl != null ? (
         <Rive
           url={animationUrl}
           fit={Fit.Contain}
-          ref={riveRef}
-          animationName={isSelected ? 'On' : 'Off'}
+          animationName={animation}
           alignment={Alignment.Center}
-          style={styles.animation}
+          style={animationStyle}
         />
       ) : null}
-    </TouchableOpacity>
+    </View>
   )
 }
 
 const styles = EStyleSheet.create({
   button: {
-    borderColor: 'white',
-    borderWidth: 3,
-    zIndex: 3,
     alignItems: 'center',
     paddingVertical: 8,
-    width: '100%',
     overflow: 'visible',
     height: scaleSize(48),
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: scaleSize(52)
   },
-  animation: {
-    borderColor: 'black',
-    borderWidth: 3,
+  touchable: {
     zIndex: 2,
-    marginTop: scaleSize(10),
-    width: scaleSize(64),
-    height: scaleSize(64)
+    position: 'absolute',
+    height: scaleSize(52),
+    width: scaleSize(52)
   }
 })

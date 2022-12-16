@@ -1,11 +1,11 @@
-import React, { useMemo, useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
-import { Home } from './screens/Home'
-
-import { ThemeContextProvider } from './theme/theme'
 import { FontLoadView } from './context/FontLoadView'
-import { useStore } from './state/useStore'
+import { Home } from './screens/Home'
+import { ParallaxProvider } from './hooks/useParralex'
+import { ThemeContextProvider } from './theme/theme'
 import { useHandler } from './hooks/useHandler'
+import { useStore } from './state/useStore'
 
 export default function App(): JSX.Element | null {
   const fetchData = useStore(useHandler((state) => state.fetchData))
@@ -22,10 +22,12 @@ export default function App(): JSX.Element | null {
   )
 
   return (
-    <ThemeContextProvider>
-      <FontLoadView customFonts={customFonts}>
-        <Home />
-      </FontLoadView>
-    </ThemeContextProvider>
+    <ParallaxProvider>
+      <ThemeContextProvider>
+        <FontLoadView customFonts={customFonts}>
+          <Home />
+        </FontLoadView>
+      </ThemeContextProvider>
+    </ParallaxProvider>
   )
 }

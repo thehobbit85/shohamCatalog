@@ -20,6 +20,7 @@ import { ThemedText } from '../common/ThemedText'
 import { TypeData } from '../../@types/types'
 import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useParallax } from '../../hooks/useParralex'
 import { useStore } from '../../state/useStore'
 
 const { height, width } = Dimensions.get('window')
@@ -37,6 +38,7 @@ export const TypeRow = ({
   onClosed
 }: TypeRowProps): JSX.Element => {
   const [pressed, setPressed] = useState(false)
+  const { animStyle } = useParallax()
   const open = useSharedValue(0)
   const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri])
 
@@ -76,8 +78,8 @@ export const TypeRow = ({
   })
 
   const containerStyles = useMemo(
-    () => [styles.container, containerAnimatedStyle],
-    [containerAnimatedStyle]
+    () => [styles.container, containerAnimatedStyle, animStyle],
+    [containerAnimatedStyle, animStyle]
   )
 
   // Type Animation

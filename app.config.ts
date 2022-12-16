@@ -14,6 +14,7 @@ const baseConfig = {
     fallbackToCacheTimeout: 0
   },
   assetBundlePatterns: ['**/*'],
+  jsEngine: 'hermes',
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.shohamtech.catalog'
@@ -38,6 +39,7 @@ const baseConfig = {
 
 export default {
   ...baseConfig,
+  plugins: ['expo-community-flipper'],
   mods: {
     ios: {
       podfileProperties: (config: { modResults: any }) => {

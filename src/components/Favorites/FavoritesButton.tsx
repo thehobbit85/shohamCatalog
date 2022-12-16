@@ -32,7 +32,7 @@ export const FavoritesButton = ({
   onSelected?: Function
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
-  const { animStyle } = useParallax()
+  const { animStyle } = useParallax({ horizontal: 0.2, vertical: 0 })
   const { theme } = useTheme()
 
   const openState = useSharedValue(0)

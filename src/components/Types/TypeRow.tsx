@@ -39,7 +39,15 @@ export const TypeRow = ({
   onClosed
 }: TypeRowProps): JSX.Element => {
   const [pressed, setPressed] = useState(false)
-  const { animStyle } = useParallax()
+  const { animStyle: rowParallax } = useParallax({
+    horizontal: 0.2,
+    vertical: 0
+  })
+
+  const { animStyle: imageParallax } = useParallax({
+    horizontal: 0.1,
+    vertical: 0
+  })
   const { theme } = useTheme()
   const open = useSharedValue(0)
   const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri])
@@ -83,9 +91,9 @@ export const TypeRow = ({
     () => [
       styles.itemContainer,
       containerAnimatedStyle,
-      !pressed ? animStyle : {}
+      !pressed ? rowParallax : {}
     ],
-    [containerAnimatedStyle, pressed, animStyle]
+    [containerAnimatedStyle, pressed, rowParallax]
   )
 
   // Type Animation
@@ -125,8 +133,8 @@ export const TypeRow = ({
   }))
 
   const imageStyles = useMemo(
-    () => [styles.imageView, imageAnimatedStyle],
-    [imageAnimatedStyle]
+    () => [styles.imageView, imageAnimatedStyle, imageParallax],
+    [imageAnimatedStyle, imageParallax]
   )
 
   return (

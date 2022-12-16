@@ -68,6 +68,8 @@ export const ParallaxProvider = ({
 
 export interface ParallaxConfig {
   sensitivity?: number
+  horizontal?: number
+  vertical?: number
 }
 
 export interface ParallaxObject {
@@ -77,18 +79,23 @@ export interface ParallaxObject {
 }
 
 export const useParallax = (config?: ParallaxConfig): ParallaxObject => {
-  const sensitivity = config?.sensitivity ?? 1
+  const { sensitivity = 1 } = config ?? {}
+  const { horizontal = sensitivity, vertical = sensitivity } = config ?? {}
   const { posY, posX } = useContext(AccelerometerContext)
 
   const animStyle = useAnimatedStyle(() => {
-    const getSensitivity = (value: number): number => {
+    const getSensitivityVertical = (value: number): number => {
       'worklet'
-      return value * sensitivity ?? 0
+      return value * vertical ?? 0
+    }
+    const getSensitivityHorizontal = (value: number): number => {
+      'worklet'
+      return value * horizontal ?? 0
     }
     return {
       transform: [
-        { translateY: getSensitivity(posY.value) },
-        { translateX: getSensitivity(posX.value) }
+        { translateY: getSensitivityVertical(posY.value) },
+        { translateX: getSensitivityHorizontal(posX.value) }
       ]
     }
   })

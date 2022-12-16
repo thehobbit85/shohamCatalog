@@ -37,7 +37,7 @@ export const LikeButton = ({
           url={animationUrl}
           fit={Fit.Contain}
           ref={riveRef}
-          stateMachineName={'State Machine 1'}
+          // stateMachineName={'State Machine 1'}
           animationName={isSelected ? 'On' : 'Off'}
           alignment={Alignment.Center}
           style={styles.animation}
@@ -49,8 +49,9 @@ export const LikeButton = ({
 
 const styles = EStyleSheet.create({
   button: {
+    borderColor: 'white',
+    borderWidth: 3,
     zIndex: 3,
-
     alignItems: 'center',
     paddingVertical: 8,
     width: '100%',
@@ -59,8 +60,9 @@ const styles = EStyleSheet.create({
     justifyContent: 'center'
   },
   animation: {
+    borderColor: 'black',
+    borderWidth: 3,
     zIndex: 2,
-
     marginTop: scaleText(10),
     width: scaleText(64),
     height: scaleText(64)

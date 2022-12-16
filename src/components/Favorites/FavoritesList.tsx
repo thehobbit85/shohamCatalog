@@ -1,13 +1,14 @@
 import { FlatList, View } from 'react-native'
-import React, { useContext } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoriteRow } from './FavoriteRow'
-import { Favorites } from '../../models/Favorites'
+import React from 'react'
 import { scaleText } from '../../utils/utils'
+import { useStore } from '../../state/useStore'
 
 export const FavoritesList = (): JSX.Element => {
-  const [favorites] = useContext(Favorites)
+  const favorites = useStore((state) => state.favorites)
+
   const data = Object.values(favorites)
 
   return (

@@ -1,16 +1,15 @@
-import React, { useContext } from 'react'
-
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Favorites } from '../../models/Favorites'
 import { LikeButton } from '../buttons/LikeButton'
 import { Neumorphism } from '../common/Neumorphism'
 import { PlantData } from '../../@types/types'
+import React from 'react'
 import { ThemedText } from '../common/ThemedText'
-import { Translation } from '../../models/Translations'
 import { View } from 'react-native'
 import { scaleText } from '../../utils/utils'
+import shallow from 'zustand/shallow'
+import { useStore } from '../../state/useStore'
 
 interface PlantRowProps {
   data: PlantData
@@ -18,8 +17,16 @@ interface PlantRowProps {
 
 export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
   const { id, name, price, colors, imageUri, amount } = data
-  const translations = useContext(Translation)
-  const [favorites, setFavorites] = useContext(Favorites)
+
+  const { translations, favorites, setFavorites } = useStore(
+    (state) => ({
+      translations: state.translations,
+      favorites: state.favorites,
+      setFavorites: state.setFavorites
+    }),
+    shallow
+  )
+
   const plantId = `${id}-${name}`
 
   return (

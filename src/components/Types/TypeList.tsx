@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
-import { TypeData } from '../../@types/types'
 import { TypeRow } from '../Types/TypeRow'
-import { Types } from '../../models/Plants'
 import { useHandler } from '../../hooks/useHandler'
+import { useStore } from '../../state/useStore'
 
 export interface TypeListProps {
   onSelected: (type: string | undefined) => void
@@ -13,7 +12,8 @@ export interface TypeListProps {
 
 export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
   const [typeSelected, setTypeSelected] = useState<string>()
-  const plantTypes = useContext<TypeData[]>(Types as any)
+  const plantTypes = useStore((state) => state.plantTypes)
+
   const handleOpen = useHandler((type: string) => {
     setTypeSelected(type)
     if (onSelected != null) onSelected(type)

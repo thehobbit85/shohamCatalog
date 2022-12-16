@@ -1,19 +1,18 @@
 import Animated, { SlideInDown } from 'react-native-reanimated'
-import React, { useContext } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
 import { PlantRow } from './PlantRow'
-import { Plants } from '../../models/Plants'
-import { PlantsData } from '../../@types/types'
+import React from 'react'
 import { scaleText } from '../../utils/utils'
+import { useStore } from '../../state/useStore'
 
 interface PlantListProps {
   type: string
 }
 
 export const PlantList = ({ type }: PlantListProps): JSX.Element => {
-  const plants = useContext<PlantsData>(Plants)
+  const plants = useStore((state) => state.plants)
   const data = (plants ?? [])[type]
 
   return (

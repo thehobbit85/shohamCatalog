@@ -9,18 +9,18 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { Dimensions, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { AntDesign } from '@expo/vector-icons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { ExpendButton } from '../buttons/ExpendButton'
-import { Favorites } from '../../models/Favorites'
 import { FavoritesFooter } from './FavoritesFooter'
 import { FavoritesList } from './FavoritesList'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { scaleText } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useStore } from '../../state/useStore'
 
 const { width, height } = Dimensions.get('window')
 
@@ -31,7 +31,7 @@ export const FavoritesButton = ({
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
   const openState = useSharedValue(0)
-  const [favorites] = useContext(Favorites)
+  const favorites = useStore((state) => state.favorites)
   const iconColor = Object.keys(favorites).length > 0 ? 'red' : 'white'
 
   const handlePress = useHandler(() => {

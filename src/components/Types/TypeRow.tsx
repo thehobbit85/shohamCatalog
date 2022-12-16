@@ -9,8 +9,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { Dimensions, View } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import { Translations, TypeData } from '../../@types/types'
+import React, { useEffect, useState } from 'react'
 
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
@@ -18,9 +17,10 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { ExpendButton } from '../buttons/ExpendButton'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
-import { Translation } from '../../models/Translations'
+import { TypeData } from '../../@types/types'
 import { scaleText } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useStore } from '../../state/useStore'
 
 const { height, width } = Dimensions.get('window')
 
@@ -38,7 +38,8 @@ export const TypeRow = ({
 }: TypeRowProps): JSX.Element => {
   const [pressed, setPressed] = useState(false)
   const open = useSharedValue(0)
-  const translations = useContext<Translations>(Translation)
+
+  const translations = useStore((state) => state.translations)
 
   const handlePress = useHandler(() => {
     if (onClosed != null && open.value === 1) onClosed(id)

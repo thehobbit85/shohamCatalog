@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
-
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Favorites } from '../../models/Favorites'
 import { Neumorphism } from '../common/Neumorphism'
+import React from 'react'
 import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
 import { View } from 'react-native'
 import { scaleText } from '../../utils/utils'
+import shallow from 'zustand/shallow'
 import { useHandler } from '../../hooks/useHandler'
+import { useStore } from '../../state/useStore'
 
 interface FavoriteRowProps {
   name: string
@@ -15,7 +15,13 @@ interface FavoriteRowProps {
 }
 
 export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
-  const [favorites, setFavorites] = useContext(Favorites)
+  const { favorites, setFavorites } = useStore(
+    (state) => ({
+      favorites: state.favorites,
+      setFavorites: state.setFavorites
+    }),
+    shallow
+  )
   const plantId = `${id}-${name}`
 
   const handlePress = useHandler(() => {

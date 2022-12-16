@@ -89,7 +89,7 @@ const styles = EStyleSheet.create({
   row: {
     flexDirection: 'row',
     borderRadius: '$borderRadii.xlarge',
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.row',
     marginHorizontal: '$margins.medium',
     paddingVertical: '$paddings.small',
     marginTop: '$margins.medium',
@@ -134,7 +134,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end'
   },
   image: {
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.button',
     borderRadius: '$borderRadii.small',
     height: '4 * $textSizes.h3',
     marginBottom: '$margins.xsmall'

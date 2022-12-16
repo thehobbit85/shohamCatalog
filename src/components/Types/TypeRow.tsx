@@ -178,7 +178,7 @@ const styles = EStyleSheet.create({
     marginBottom: scaleSize(14),
     height: height / 5,
     borderRadius: '$borderRadii.xlarge',
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.row',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end'

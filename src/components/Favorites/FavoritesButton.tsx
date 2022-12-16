@@ -143,7 +143,7 @@ const styles = EStyleSheet.create({
     marginTop: '$margins.small',
     marginBottom: '$margins.medium',
     borderRadius: '$borderRadii.large',
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.button',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: scaleSize(56) * 2,

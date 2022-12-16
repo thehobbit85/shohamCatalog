@@ -5,6 +5,8 @@ export const defaultTheme = {
   $fontFamily: 'GveretLevin-Regular',
   $colors: {
     background: '#084b3f',
+    row: '#084b3f',
+    button: '#084b3f',
     text: 'white'
   },
   $textSizes: {

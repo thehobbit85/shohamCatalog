@@ -35,7 +35,7 @@ const styles = EStyleSheet.create({
     padding: '$paddings.small',
     marginBottom: '$margins.medium',
     justifyContent: 'center',
-    backgroundColor: '$colors.background'
+    backgroundColor: '$colors.button'
   },
   text: {
     fontSize: '$textSizes.h2',

@@ -45,7 +45,7 @@ export const FavoritesFooter = (): JSX.Element => {
 const styles = EStyleSheet.create({
   footer: {
     borderRadius: '$borderRadii.large',
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.row',
     position: 'absolute',
     bottom: height / 6,
     width: '100%',

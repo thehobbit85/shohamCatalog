@@ -33,7 +33,7 @@ export const TrashButton = ({
 
 const styles = EStyleSheet.create({
   button: {
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.button',
     borderRadius: '$borderRadii.medium',
     marginLeft: '$margins.xsmall',
     alignItems: 'center',

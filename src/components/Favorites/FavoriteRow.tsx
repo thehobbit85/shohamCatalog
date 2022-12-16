@@ -50,7 +50,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: '$borderRadii.small',
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.row',
     marginHorizontal: '$margins.medium',
     marginBottom: '$margins.small',
     marginTop: '$margins.medium',

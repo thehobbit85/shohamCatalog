@@ -39,7 +39,7 @@ export const HeartButton = ({
 
 const styles = EStyleSheet.create({
   button: {
-    backgroundColor: '$colors.background',
+    backgroundColor: '$colors.button',
     borderRadius: '$borderRadii.medium',
     alignItems: 'center',
     paddingVertical: '$paddings.small',

@@ -9,7 +9,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { Dimensions, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
@@ -18,7 +18,7 @@ import { ExpendButton } from '../buttons/ExpendButton'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { TypeData } from '../../@types/types'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
 
@@ -38,8 +38,9 @@ export const TypeRow = ({
 }: TypeRowProps): JSX.Element => {
   const [pressed, setPressed] = useState(false)
   const open = useSharedValue(0)
+  const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri])
 
-  const translations = useStore((state) => state.translations)
+  const translations = useStore(useHandler((state) => state.translations))
 
   const handlePress = useHandler(() => {
     if (onClosed != null && open.value === 1) onClosed(id)
@@ -74,14 +75,24 @@ export const TypeRow = ({
     }
   })
 
-  // Title Animation
+  const containerStyles = useMemo(
+    () => [styles.container, containerAnimatedStyle],
+    [containerAnimatedStyle]
+  )
+
+  // Type Animation
   const typeRight = width / 2.5
-  const typeTop = scaleText(80)
+  const typeTop = scaleSize(80)
   const typeAnimatedStyle = useAnimatedStyle(() => ({
     marginTop: open.value * typeTop,
     right: -open.value * typeRight,
     width: `${(1 + open.value / 2) * 100}%`
   }))
+
+  const typeStyles = useMemo(
+    () => [styles.type, typeAnimatedStyle],
+    [typeAnimatedStyle]
+  )
 
   // Arrow Animation
   const arrowBottom = height - typeTop
@@ -92,6 +103,11 @@ export const TypeRow = ({
     bottom: open.value * arrowBottom
   }))
 
+  const arrowStyles = useMemo(
+    () => [styles.arrow, arrowAnimatedStyle],
+    [arrowAnimatedStyle]
+  )
+
   // Image Animation
   const imageAnimatedStyle = useAnimatedStyle(() => ({
     bottom: withTiming(open.value > 0.95 ? -height / 4 : 0, {
@@ -100,15 +116,20 @@ export const TypeRow = ({
     })
   }))
 
+  const imageStyles = useMemo(
+    () => [styles.imageView, imageAnimatedStyle],
+    [imageAnimatedStyle]
+  )
+
   return (
     <Neumorphism>
       <Animated.View
         entering={SlideInLeft.duration(250)}
         exiting={SlideOutLeft.duration(250)}
-        style={[styles.container, containerAnimatedStyle]}
+        style={containerStyles}
       >
         <View style={styles.column}>
-          <Animated.View style={[styles.type, typeAnimatedStyle]}>
+          <Animated.View style={typeStyles}>
             <ThemedText style={styles.title}>
               {pressed ? `${translations[id]} - ${potType}` : translations[id]}
             </ThemedText>
@@ -120,19 +141,19 @@ export const TypeRow = ({
             </View>
           ) : null}
 
-          <Animated.View style={[styles.arrow, arrowAnimatedStyle]}>
+          <Animated.View style={arrowStyles}>
             <ExpendButton
               onPress={handlePress}
               open={pressed}
-              size={scaleText(36)}
+              size={scaleSize(36)}
             />
           </Animated.View>
         </View>
 
-        <Animated.View style={[styles.imageView, imageAnimatedStyle]}>
+        <Animated.View style={imageStyles}>
           <CachedImage
             resizeMode="contain"
-            source={{ uri: imageUri }}
+            source={imageSource}
             style={styles.image}
           />
         </Animated.View>
@@ -143,10 +164,10 @@ export const TypeRow = ({
 
 const styles = EStyleSheet.create({
   container: {
-    marginTop: scaleText(24),
-    marginLeft: scaleText(-36),
-    marginRight: scaleText(36),
-    marginBottom: scaleText(14),
+    marginTop: scaleSize(24),
+    marginLeft: scaleSize(-36),
+    marginRight: scaleSize(36),
+    marginBottom: scaleSize(14),
     height: height / 5,
     borderRadius: 24,
     backgroundColor: '$backgroundColor',
@@ -165,20 +186,20 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
-    top: scaleText(4),
-    marginRight: scaleText(-26)
+    top: scaleSize(4),
+    marginRight: scaleSize(-26)
   },
   title: {
     textAlign: 'right',
     width: '100%'
   },
   potType: {
-    marginTop: scaleText(8),
-    fontSize: scaleText(24)
+    marginTop: scaleSize(8),
+    fontSize: scaleSize(24)
   },
   arrow: {
-    marginLeft: scaleText(36),
-    paddingBottom: scaleText(16)
+    marginLeft: scaleSize(36),
+    paddingBottom: scaleSize(16)
   },
   imageView: {
     flex: 1

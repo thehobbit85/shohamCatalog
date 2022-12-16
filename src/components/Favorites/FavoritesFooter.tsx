@@ -6,7 +6,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { NeuButton } from '../buttons/NeuButton'
 import { Neumorphism } from '../common/Neumorphism'
 import React from 'react'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
 const { height } = Dimensions.get('window')
@@ -45,7 +45,7 @@ export const FavoritesFooter = (): JSX.Element => {
 
 const styles = EStyleSheet.create({
   footer: {
-    borderRadius: scaleText(16),
+    borderRadius: scaleSize(16),
     backgroundColor: '$backgroundColor',
     position: 'absolute',
     bottom: height / 6,
@@ -59,15 +59,15 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: scaleText(16),
-    height: scaleText(64),
-    padding: scaleText(10),
-    marginBottom: scaleText(16),
+    borderRadius: scaleSize(16),
+    height: scaleSize(64),
+    padding: scaleSize(10),
+    marginBottom: scaleSize(16),
     justifyContent: 'center',
     backgroundColor: '$backgroundColor'
   },
-  leftButton: { marginLeft: scaleText(16), marginRight: scaleText(8) },
-  rightButton: { marginLeft: scaleText(8), marginRight: scaleText(16) },
+  leftButton: { marginLeft: scaleSize(16), marginRight: scaleSize(8) },
+  rightButton: { marginLeft: scaleSize(8), marginRight: scaleSize(16) },
   text: {
     height: '100%',
     width: '100%'

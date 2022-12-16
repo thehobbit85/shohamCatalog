@@ -2,19 +2,21 @@ import Animated, { SlideInLeft } from 'react-native-reanimated'
 import { Dimensions, Image } from 'react-native'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { ThemedText } from './common/ThemedText'
-import { scaleText } from '../utils/utils'
+import { scaleSize } from '../utils/utils'
 
 const { height } = Dimensions.get('window')
 
 export const Title = ({ title }: { title: string }): JSX.Element => {
+  const imageSource = useMemo(
+    () => require('../../assets/images/flower.png'),
+    []
+  )
+
   return (
     <Animated.View entering={SlideInLeft.duration(250)} style={styles.header}>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/images/flower.png')}
-      />
+      <Image style={styles.logo} source={imageSource} />
       <ThemedText style={styles.title}>{title}</ThemedText>
     </Animated.View>
   )
@@ -27,16 +29,16 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     overflow: 'visible',
-    height: scaleText(72)
+    height: scaleSize(72)
   },
   title: {
     flex: 1,
     height: '100%',
-    fontSize: scaleText(48),
-    right: scaleText(16)
+    fontSize: scaleSize(48),
+    right: scaleSize(16)
   },
   logo: {
-    left: scaleText(16),
+    left: scaleSize(16),
     height: height / 6,
     width: height / 6
   }

@@ -1,8 +1,8 @@
 import { LayoutChangeEvent, Text, TextStyle } from 'react-native'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
 interface ThemedTextProps {
@@ -16,7 +16,15 @@ export const ThemedText = ({
   ...props
 }: ThemedTextProps): JSX.Element => {
   const [styleState, setStyleState] = useState<any>({})
-  const styleArray = Array.isArray(style) ? style : [style]
+  const styleArray = useMemo(
+    () => (Array.isArray(style) ? style : [style]),
+    [style]
+  )
+
+  const textStyle = useMemo(
+    () => [styles.text, styleState, ...styleArray],
+    [styleArray, styleState]
+  )
 
   const handleLayout = useHandler(
     ({
@@ -42,7 +50,7 @@ export const ThemedText = ({
       onLayout={handleLayout}
       adjustsFontSizeToFit={true}
       numberOfLines={1}
-      style={[styles.text, styleState, ...styleArray]}
+      style={textStyle}
       {...props}
     >
       {children}
@@ -52,11 +60,11 @@ export const ThemedText = ({
 
 const styles = EStyleSheet.create({
   text: {
-    paddingTop: scaleText(1),
-    paddingRight: scaleText(4),
+    paddingTop: scaleSize(1),
+    paddingRight: scaleSize(4),
     textAlign: 'right',
     fontFamily: 'GveretLevin-Regular',
-    fontSize: scaleText(36),
+    fontSize: scaleSize(36),
     color: 'white'
   }
 })

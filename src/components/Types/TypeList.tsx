@@ -5,6 +5,7 @@ import { FlatList } from 'react-native'
 import { TypeRow } from '../Types/TypeRow'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
+import { TypeData } from '../../@types/types'
 
 export interface TypeListProps {
   onSelected: (type: string | undefined) => void
@@ -12,7 +13,15 @@ export interface TypeListProps {
 
 export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
   const [typeSelected, setTypeSelected] = useState<string>()
-  const plantTypes = useStore((state) => state.plantTypes)
+  const plantTypes = useStore(useHandler((state) => state.plantTypes))
+  const renderItem = useHandler(({ item }: { item: TypeData }) => {
+    if (typeSelected == null) return <TypeRow onOpened={handleOpen} {...item} />
+
+    if (item.id === typeSelected)
+      return <TypeRow onClosed={handleClose} {...item} />
+
+    return null
+  })
 
   const handleOpen = useHandler((type: string) => {
     setTypeSelected(type)
@@ -28,15 +37,7 @@ export const TypeList = ({ onSelected }: TypeListProps): JSX.Element => {
       scrollEnabled={typeSelected == null}
       style={styles.list}
       data={plantTypes}
-      renderItem={({ item }) => {
-        if (typeSelected == null)
-          return <TypeRow onOpened={handleOpen} {...item} />
-
-        if (item.id === typeSelected)
-          return <TypeRow onClosed={handleClose} {...item} />
-
-        return null
-      }}
+      renderItem={renderItem}
     />
   )
 }

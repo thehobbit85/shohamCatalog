@@ -4,16 +4,22 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
 import { PlantRow } from './PlantRow'
 import React from 'react'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useStore } from '../../state/useStore'
+import { useHandler } from '../../hooks/useHandler'
+import { PlantData } from '../../@types/types'
 
 interface PlantListProps {
   type: string
 }
 
 export const PlantList = ({ type }: PlantListProps): JSX.Element => {
-  const plants = useStore((state) => state.plants)
+  const plants = useStore(useHandler((state) => state.plants))
   const data = (plants ?? [])[type]
+  const keyExtractor = useHandler((_: any, index: number) => `${index}`)
+  const renderItem = useHandler(({ item }: { item: PlantData }) => (
+    <PlantRow data={{ ...item }} />
+  ))
 
   return (
     <Animated.View
@@ -22,8 +28,8 @@ export const PlantList = ({ type }: PlantListProps): JSX.Element => {
     >
       <FlatList
         data={data}
-        keyExtractor={(_, index) => `${index}`}
-        renderItem={({ item }) => <PlantRow data={{ ...item }} />}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
       />
     </Animated.View>
   )
@@ -32,6 +38,6 @@ export const PlantList = ({ type }: PlantListProps): JSX.Element => {
 const styles = EStyleSheet.create({
   row: {
     width: '100%',
-    paddingTop: scaleText(4)
+    paddingTop: scaleSize(4)
   }
 })

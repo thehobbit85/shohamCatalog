@@ -5,43 +5,32 @@ import {
   StatusBar,
   View
 } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoritesButton } from '../components/Favorites/FavoritesButton'
 import { PlantList } from '../components/Plants/PlantList'
 import { Title } from '../components/Title'
 import { TypeList } from '../components/Types/TypeList'
-import shallow from 'zustand/shallow'
+
 import { useStore } from '../state/useStore'
+import { useHandler } from '../hooks/useHandler'
 
 const { height } = Dimensions.get('window')
 
 export const Home = (): JSX.Element => {
   const [type, setType] = useState<string>()
-
-  const { translations, fetchData } = useStore(
-    (state) => ({
-      translations: state.translations,
-      fetchData: state.fetchData
-    }),
-    shallow
+  const translations = useStore(useHandler((state) => state.translations))
+  const handleSelected = useHandler((open: boolean) =>
+    setType(open ? 'Favorites' : undefined)
   )
-
-  useEffect(() => {
-    fetchData().catch((e) => console.log(e))
-  }, [fetchData])
 
   return (
     <SafeAreaView>
-      <View style={[styles.background]} />
+      <View style={styles.background} />
 
       {type == null || type === 'Favorites' ? (
-        <FavoritesButton
-          onSelected={(open: boolean) =>
-            setType(open ? 'Favorites' : undefined)
-          }
-        />
+        <FavoritesButton onSelected={handleSelected} />
       ) : null}
 
       {type != null && type !== 'Favorites' ? (

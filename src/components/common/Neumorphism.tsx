@@ -1,5 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View } from 'react-native'
 import color from 'color'
 
@@ -21,23 +21,25 @@ export const Neumorphism = (props: NeumorphismProps): JSX.Element => {
 
   const lightShadow = color(backgroundColor).lighten(0.5).alpha(0.75).hexa()
   const darkShadow = color(backgroundColor).darken(0.5).alpha(0.75).hexa()
+  const lightStyle = useMemo(
+    () => ({
+      ...styles.outerShadow,
+      shadowColor: revert ? darkShadow : lightShadow,
+      ...style
+    }),
+    [darkShadow, lightShadow, revert, style]
+  )
+  const darkStyle = useMemo(
+    () => ({
+      ...styles.innerShadow,
+      shadowColor: revert ? lightShadow : darkShadow
+    }),
+    [darkShadow, lightShadow, revert]
+  )
 
   return (
-    <View
-      style={{
-        ...styles.outerShadow,
-        shadowColor: revert ? darkShadow : lightShadow,
-        ...style
-      }}
-    >
-      <View
-        style={{
-          ...styles.innerShadow,
-          shadowColor: revert ? lightShadow : darkShadow
-        }}
-      >
-        {children}
-      </View>
+    <View style={lightStyle}>
+      <View style={darkStyle}>{children}</View>
     </View>
   )
 }

@@ -4,7 +4,7 @@ import React from 'react'
 import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
 import { View } from 'react-native'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import shallow from 'zustand/shallow'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
@@ -16,10 +16,10 @@ interface FavoriteRowProps {
 
 export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
   const { favorites, setFavorites } = useStore(
-    (state) => ({
+    useHandler((state) => ({
       favorites: state.favorites,
       setFavorites: state.setFavorites
-    }),
+    })),
     shallow
   )
   const plantId = `${id}-${name}`
@@ -48,22 +48,22 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: scaleText(10),
+    borderRadius: scaleSize(10),
     backgroundColor: '$backgroundColor',
-    marginHorizontal: scaleText(16),
-    paddingVertical: scaleText(8),
-    marginBottom: scaleText(8),
-    marginTop: scaleText(16),
-    paddingLeft: scaleText(8)
+    marginHorizontal: scaleSize(16),
+    paddingVertical: scaleSize(8),
+    marginBottom: scaleSize(8),
+    marginTop: scaleSize(16),
+    paddingLeft: scaleSize(8)
   },
   nameRow: {
-    marginHorizontal: scaleText(8)
+    marginHorizontal: scaleSize(8)
   },
   nameText: {
     width: '100%',
     textAlign: 'right',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    fontSize: scaleText(24)
+    fontSize: scaleSize(24)
   }
 })

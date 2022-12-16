@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import { TouchableOpacity } from 'react-native'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
 interface HeartButtonProps {
@@ -40,7 +40,7 @@ export const HeartButton = ({
 const styles = EStyleSheet.create({
   button: {
     backgroundColor: '$backgroundColor',
-    borderRadius: scaleText(12),
+    borderRadius: scaleSize(12),
     alignItems: 'center',
     paddingVertical: 8,
     width: '100%',

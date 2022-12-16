@@ -3,17 +3,20 @@ import { Dimensions, View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { NeuButton } from './NeuButton'
 import React from 'react'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
+import { useHandler } from '../../hooks/useHandler'
 
 const { height } = Dimensions.get('window')
 
 export const Contact = (): JSX.Element => {
+  const handlePress = useHandler(() => {
+    console.log('hey')
+  })
+
   return (
     <View style={styles.contactButton}>
       <NeuButton
-        onPress={() => {
-          console.log('hey')
-        }}
+        onPress={handlePress}
         title={'צור קשר'}
         style={styles.contactButtonInner}
       />
@@ -23,16 +26,16 @@ export const Contact = (): JSX.Element => {
 
 const styles = EStyleSheet.create({
   contactButton: {
-    height: scaleText(80),
+    height: scaleSize(80),
     zIndex: 4,
     position: 'absolute',
-    top: height - scaleText(82),
+    top: height - scaleSize(82),
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center'
   },
   contactButtonInner: {
-    borderRadius: scaleText(8),
+    borderRadius: scaleSize(8),
     height: '95%'
   }
 })

@@ -9,7 +9,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { Dimensions, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 import { AntDesign } from '@expo/vector-icons'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -18,7 +18,7 @@ import { FavoritesFooter } from './FavoritesFooter'
 import { FavoritesList } from './FavoritesList'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
 
@@ -31,7 +31,7 @@ export const FavoritesButton = ({
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
   const openState = useSharedValue(0)
-  const favorites = useStore((state) => state.favorites)
+  const favorites = useStore(useHandler((state) => state.favorites))
   const iconColor = Object.keys(favorites).length > 0 ? 'red' : 'white'
 
   const handlePress = useHandler(() => {
@@ -65,35 +65,50 @@ export const FavoritesButton = ({
     }
   })
 
-  const heartMargin = scaleText(12)
+  const containerStyles = useMemo(
+    () => [styles.itemContainer, containerAnimatedStyle],
+    [containerAnimatedStyle]
+  )
+
+  const heartMargin = scaleSize(12)
   const heartAnimatedStyle = useAnimatedStyle(() => ({
     marginBottom: openState.value * heartMargin,
     paddingLeft: (1 - openState.value) * heartMargin
   }))
 
-  const titleMargin = scaleText(12)
+  const heartStyles = useMemo(
+    () => [styles.titleRow, heartAnimatedStyle],
+    [heartAnimatedStyle]
+  )
+
+  const titleMargin = scaleSize(12)
   const titleAnimatedStyle = useAnimatedStyle(() => ({
     marginRight: openState.value * titleMargin,
     marginLeft: (1 - openState.value) * titleMargin * 2
   }))
 
+  const titleStyles = useMemo(
+    () => [styles.title, titleAnimatedStyle],
+    [titleAnimatedStyle]
+  )
+
   return (
     <Neumorphism>
       <Animated.View
-        style={[styles.itemContainer, containerAnimatedStyle]}
+        style={containerStyles}
         entering={SlideInRight.delay(250).duration(250)}
         exiting={SlideOutRight.duration(250)}
       >
-        <Animated.View style={[styles.titleRow, heartAnimatedStyle]}>
+        <Animated.View style={heartStyles}>
           {open ? (
             <ExpendButton onPress={handlePress} open={true} initAngle={1} />
           ) : (
             <TouchableOpacity onPress={handlePress}>
-              <AntDesign name="heart" size={scaleText(36)} color={iconColor} />
+              <AntDesign name="heart" size={scaleSize(36)} color={iconColor} />
             </TouchableOpacity>
           )}
 
-          <Animated.View style={[styles.title, titleAnimatedStyle]}>
+          <Animated.View style={titleStyles}>
             <ThemedText style={styles.titleText}>{'רשימת מועדפים'}</ThemedText>
           </Animated.View>
         </Animated.View>
@@ -111,26 +126,26 @@ export const FavoritesButton = ({
 const styles = EStyleSheet.create({
   itemContainer: {
     alignSelf: 'flex-end',
-    marginRight: scaleText(-56),
-    marginTop: scaleText(8),
-    marginBottom: scaleText(16),
+    marginRight: scaleSize(-56),
+    marginTop: scaleSize(8),
+    marginBottom: scaleSize(16),
     borderRadius: 16,
     backgroundColor: '$backgroundColor',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    width: scaleText(56 * 2),
-    height: scaleText(56)
+    width: scaleSize(56 * 2),
+    height: scaleSize(56)
   },
   titleRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: scaleText(12),
-    height: scaleText(56)
+    paddingLeft: scaleSize(12),
+    height: scaleSize(56)
   },
   title: {
-    marginRight: scaleText(16),
-    paddingTop: scaleText(4)
+    marginRight: scaleSize(16),
+    paddingTop: scaleSize(4)
   },
   titleText: {
     width: '100%',

@@ -9,7 +9,7 @@ import { Line, Svg } from 'react-native-svg'
 import React, { useEffect, useState } from 'react'
 
 import { TouchableOpacity } from 'react-native'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
 const AnimatedLine = Animated.createAnimatedComponent(Line)
@@ -24,7 +24,7 @@ interface ExpendButtonProps {
 }
 
 export const ExpendButton = ({
-  size = scaleText(36),
+  size = scaleSize(36),
   onPress,
   color = 'white',
   strokeWidth = `${size / 3.5}`,
@@ -46,7 +46,7 @@ export const ExpendButton = ({
     })
   }, [angle, isOpen, open])
 
-  const svgSize = scaleText(size)
+  const svgSize = scaleSize(size)
   const svgMiddle = svgSize / 2
 
   const viewBox = `${0} ${-svgSize / 3} ${svgSize} ${svgSize * 1.5}`

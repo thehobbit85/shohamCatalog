@@ -3,7 +3,7 @@ import Rive, { Alignment, Fit, RiveRef } from 'rive-react-native'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { TouchableOpacity } from 'react-native'
-import { scaleText } from '../../utils/utils'
+import { scaleSize } from '../../utils/utils'
 import { useAssets } from 'expo-asset'
 import { useHandler } from '../../hooks/useHandler'
 
@@ -37,7 +37,6 @@ export const LikeButton = ({
           url={animationUrl}
           fit={Fit.Contain}
           ref={riveRef}
-          // stateMachineName={'State Machine 1'}
           animationName={isSelected ? 'On' : 'Off'}
           alignment={Alignment.Center}
           style={styles.animation}
@@ -56,15 +55,15 @@ const styles = EStyleSheet.create({
     paddingVertical: 8,
     width: '100%',
     overflow: 'visible',
-    height: scaleText(48),
+    height: scaleSize(48),
     justifyContent: 'center'
   },
   animation: {
     borderColor: 'black',
     borderWidth: 3,
     zIndex: 2,
-    marginTop: scaleText(10),
-    width: scaleText(64),
-    height: scaleText(64)
+    marginTop: scaleSize(10),
+    width: scaleSize(64),
+    height: scaleSize(64)
   }
 })

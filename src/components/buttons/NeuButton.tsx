@@ -4,6 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { TouchableOpacity } from 'react-native'
+import { scaleSize } from '../../utils/utils'
 
 interface NeuButtonProps {
   title: string
@@ -29,6 +30,7 @@ export const NeuButton = (props: NeuButtonProps): JSX.Element => {
 const styles = EStyleSheet.create({
   button: {
     flex: 1,
+    height: scaleSize(64),
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: '$borderRadii.large',
@@ -38,6 +40,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '$colors.button'
   },
   text: {
+    height: '100%',
     fontSize: '$textSizes.h2',
     width: '100%'
   }

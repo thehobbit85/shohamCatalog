@@ -1,16 +1,24 @@
+# Expo Local Config
+eas.json
+.expo/
+
+# Builds
 node_modules/
 android/
 ios/
-.expo/
 dist/
-npm-debug.*
+web-build/
+
+# Keys
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
+
+# Logs
+npm-debug.*
 
 # macOS
 .DS_Store

@@ -34,12 +34,11 @@ const baseConfig = {
       projectId: 'e83b688c-2141-485d-870f-d2c47f2a5a0c'
     }
   },
-  owner: 'shohamtech'
+  owner: 'thehobbit85'
 }
 
 export default {
   ...baseConfig,
-  plugins: ['expo-community-flipper'],
   mods: {
     ios: {
       podfileProperties: (config: { modResults: any }) => {

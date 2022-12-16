@@ -1,18 +1,25 @@
 import * as SplashScreen from 'expo-splash-screen'
-
 import React, { useCallback } from 'react'
-
-import { Application } from './src/index'
-import { Providers } from './src/providers/Providers'
 import { View } from 'react-native'
 import { useFonts } from 'expo-font'
 
+interface FontLoadViewProps {
+  children: any
+  customFonts?: { [name: string]: string }
+}
+
 SplashScreen.preventAutoHideAsync().catch((error) => console.log(error))
 
-export default function App(): JSX.Element | null {
-  const [fontsLoaded] = useFonts({
-    'GveretLevin-Regular': require('./assets/fonts/GveretLevin-Regular.ttf')
-  })
+export const FontLoadView = ({
+  children,
+  customFonts = {}
+}: FontLoadViewProps): JSX.Element | null => {
+  const fontsToUse = Object.entries(customFonts).reduce(
+    (res, [key, value]) => ({ ...res, [key]: require(value) }),
+    {}
+  )
+
+  const [fontsLoaded] = useFonts(fontsToUse)
 
   const onLayoutRootView = useCallback(() => {
     if (fontsLoaded) {
@@ -24,11 +31,5 @@ export default function App(): JSX.Element | null {
     return null
   }
 
-  return (
-    <View onLayout={onLayoutRootView}>
-      <Providers>
-        <Application />
-      </Providers>
-    </View>
-  )
+  return <View onLayout={onLayoutRootView}>{children}</View>
 }

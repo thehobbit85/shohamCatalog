@@ -1,26 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Theme } from '../utils/types'
-import { Themes } from '../utils/themes'
+import { Theme } from '../@types/types'
+import { Styles } from './styles'
 import { useAsyncStorage } from '../hooks/useAsyncStorage'
 import { useHandler } from '../hooks/useHandler'
 
-EStyleSheet.build(Themes.default)
-
-export const ThemeContext = React.createContext<{
+interface ThemeContextProps {
   theme: Theme
   setTheme: Function
   selectTheme: Function
-}>({
+}
+
+EStyleSheet.build(Styles.default)
+
+export const ThemeContext = React.createContext<ThemeContextProps>({
   theme: {},
   setTheme: () => {},
   selectTheme: () => {}
 })
 
 export const ThemeContextProvider = ({ children }: any): JSX.Element => {
-  const [theme, setTheme] = useAsyncStorage<Theme>('theme', Themes.default)
-  const selectTheme = useHandler((name: string): void => setTheme(Themes[name]))
+  const [theme, setTheme] = useAsyncStorage<Theme>('theme', Styles.default)
+  const selectTheme = useHandler((name: string): void => setTheme(Styles[name]))
   useEffect(() => EStyleSheet.build(theme), [theme])
 
   return (
@@ -31,3 +33,5 @@ export const ThemeContextProvider = ({ children }: any): JSX.Element => {
     </ThemeContext.Provider>
   )
 }
+
+export const useTheme = (): ThemeContextProps => useContext(ThemeContext)

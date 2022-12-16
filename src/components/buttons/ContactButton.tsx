@@ -1,9 +1,9 @@
 import { Dimensions, View } from 'react-native'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NeuButton } from './buttons/NeuButton'
+import { NeuButton } from './NeuButton'
 import React from 'react'
-import { scaleText } from '../utils/utils'
+import { scaleText } from '../../utils/utils'
 
 const { height } = Dimensions.get('window')
 

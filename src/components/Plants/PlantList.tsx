@@ -4,8 +4,8 @@ import React, { useContext } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
 import { PlantRow } from './PlantRow'
-import { PlantsContext } from '../../providers/Plants'
-import { PlantsData } from '../../utils/types'
+import { Plants } from '../../models/Plants'
+import { PlantsData } from '../../@types/types'
 import { scaleText } from '../../utils/utils'
 
 interface PlantListProps {
@@ -13,7 +13,7 @@ interface PlantListProps {
 }
 
 export const PlantList = ({ type }: PlantListProps): JSX.Element => {
-  const plants = useContext<PlantsData>(PlantsContext)
+  const plants = useContext<PlantsData>(Plants)
   const data = (plants ?? [])[type]
 
   return (

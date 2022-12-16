@@ -3,12 +3,12 @@ import React, { useContext } from 'react'
 // @ts-expect-error
 import CachedImage from 'react-native-expo-cached-image'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { FavoritesContext } from '../../providers/Favorites'
+import { Favorites } from '../../models/Favorites'
 import { LikeButton } from '../buttons/LikeButton'
 import { Neumorphism } from '../common/Neumorphism'
-import { PlantData } from '../../utils/types'
+import { PlantData } from '../../@types/types'
 import { ThemedText } from '../common/ThemedText'
-import { TranslationContext } from '../../providers/Translations'
+import { Translation } from '../../models/Translations'
 import { View } from 'react-native'
 import { scaleText } from '../../utils/utils'
 
@@ -18,8 +18,8 @@ interface PlantRowProps {
 
 export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
   const { id, name, price, colors, imageUri, amount } = data
-  const translations = useContext(TranslationContext)
-  const [favorites, setFavorites] = useContext(FavoritesContext)
+  const translations = useContext(Translation)
+  const [favorites, setFavorites] = useContext(Favorites)
   const plantId = `${id}-${name}`
 
   return (

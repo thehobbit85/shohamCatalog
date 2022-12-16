@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { FavoritesContext } from '../../providers/Favorites'
+import { Favorites } from '../../models/Favorites'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
@@ -15,7 +15,7 @@ interface FavoriteRowProps {
 }
 
 export const FavoriteRow = ({ name, id }: FavoriteRowProps): JSX.Element => {
-  const [favorites, setFavorites] = useContext(FavoritesContext)
+  const [favorites, setFavorites] = useContext(Favorites)
   const plantId = `${id}-${name}`
 
   const handlePress = useHandler(() => {

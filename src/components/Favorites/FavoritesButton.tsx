@@ -14,7 +14,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { ExpendButton } from '../buttons/ExpendButton'
-import { FavoritesContext } from '../../providers/Favorites'
+import { Favorites } from '../../models/Favorites'
 import { FavoritesFooter } from './FavoritesFooter'
 import { FavoritesList } from './FavoritesList'
 import { Neumorphism } from '../common/Neumorphism'
@@ -24,14 +24,14 @@ import { useHandler } from '../../hooks/useHandler'
 
 const { width, height } = Dimensions.get('window')
 
-export const Favorites = ({
+export const FavoritesButton = ({
   onSelected
 }: {
   onSelected?: Function
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
   const openState = useSharedValue(0)
-  const [favorites] = useContext(FavoritesContext)
+  const [favorites] = useContext(Favorites)
   const iconColor = Object.keys(favorites).length > 0 ? 'red' : 'white'
 
   const handlePress = useHandler(() => {

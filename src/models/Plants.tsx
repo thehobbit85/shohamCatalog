@@ -1,4 +1,4 @@
-import { PlantData, PlantsData, TypeData } from '../utils/types'
+import { PlantData, PlantsData, TypeData } from '../@types/types'
 
 import React from 'react'
 import { TYPES_TAB_NAME } from '../utils/constants'
@@ -49,9 +49,8 @@ const fetchAllPlantsData = async (types: TypeData[]): Promise<PlantsData> =>
     response.reduce((res, data) => ({ ...res, ...data }), {})
   )
 
-export const TypesContext = React.createContext<TypeData[]>([])
-
-export const PlantsContext = React.createContext<PlantsData>({})
+export const Types = React.createContext<TypeData[]>([])
+export const Plants = React.createContext<PlantsData>({})
 
 export const PlantsContextProvider = ({ children }: any): JSX.Element => {
   const types = useCachedQuery<TypeData[]>('types', fetchPlantTypes)
@@ -61,10 +60,8 @@ export const PlantsContextProvider = ({ children }: any): JSX.Element => {
     types != null
   )
   return (
-    <TypesContext.Provider value={types ?? []}>
-      <PlantsContext.Provider value={plants ?? {}}>
-        {children}
-      </PlantsContext.Provider>
-    </TypesContext.Provider>
+    <Types.Provider value={types ?? []}>
+      <Plants.Provider value={plants ?? {}}>{children}</Plants.Provider>
+    </Types.Provider>
   )
 }

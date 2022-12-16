@@ -1,6 +1,6 @@
 import React from 'react'
 import { TRANSLATION_TAB_NAME } from '../utils/constants'
-import { Translations } from '../utils/types'
+import { Translations } from '../@types/types'
 import { fetchSheetTab } from '../utils/fetchers'
 import { useCachedQuery } from '../hooks/useCachedQuery'
 
@@ -21,7 +21,7 @@ const fetchTranslation = async (): Promise<Translations> =>
       )
   )
 
-export const TranslationContext = React.createContext<Translations>({})
+export const Translation = React.createContext<Translations>({})
 
 export const TranslationContextProvider = ({ children }: any): JSX.Element => {
   const translations = useCachedQuery<Translations>(
@@ -30,8 +30,8 @@ export const TranslationContextProvider = ({ children }: any): JSX.Element => {
   )
 
   return (
-    <TranslationContext.Provider value={translations ?? {}}>
+    <Translation.Provider value={translations ?? {}}>
       {children}
-    </TranslationContext.Provider>
+    </Translation.Provider>
   )
 }

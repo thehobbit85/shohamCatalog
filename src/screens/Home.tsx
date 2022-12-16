@@ -8,24 +8,24 @@ import {
 import React, { useContext, useState } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Favorites } from './components/Favorites/Favorites'
-import { PlantList } from './components/Plants/PlantList'
-import { Title } from './components/Title'
-import { TranslationContext } from './providers/Translations'
-import { TypeList } from './components/Types/TypeList'
+import { FavoritesButton } from '../components/Favorites/FavoritesButton'
+import { PlantList } from '../components/Plants/PlantList'
+import { Title } from '../components/Title'
+import { Translation } from '../models/Translations'
+import { TypeList } from '../components/Types/TypeList'
 
 const { height } = Dimensions.get('window')
 
-export const Application = (): JSX.Element => {
+export const Home = (): JSX.Element => {
   const [type, setType] = useState<string>()
-  const translations = useContext(TranslationContext)
+  const translations = useContext(Translation)
 
   return (
     <SafeAreaView>
       <View style={[styles.background]} />
 
       {type == null || type === 'Favorites' ? (
-        <Favorites
+        <FavoritesButton
           onSelected={(open: boolean) =>
             setType(open ? 'Favorites' : undefined)
           }

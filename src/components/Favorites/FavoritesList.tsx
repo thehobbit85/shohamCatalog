@@ -3,11 +3,11 @@ import React, { useContext } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoriteRow } from './FavoriteRow'
-import { FavoritesContext } from '../../providers/Favorites'
+import { Favorites } from '../../models/Favorites'
 import { scaleText } from '../../utils/utils'
 
 export const FavoritesList = (): JSX.Element => {
-  const [favorites] = useContext(FavoritesContext)
+  const [favorites] = useContext(Favorites)
   const data = Object.values(favorites)
 
   return (

@@ -29,16 +29,17 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     overflow: 'visible',
-    height: scaleSize(72)
+    height: scaleSize(72),
+    marginBottom: '$margins.small'
   },
   title: {
     flex: 1,
     height: '100%',
     fontSize: '$textSizes.h1',
-    right: scaleSize(16)
+    right: '$paddings.medium'
   },
   logo: {
-    left: scaleSize(16),
+    left: '$paddings.medium',
     height: height / 6,
     width: height / 6
   }

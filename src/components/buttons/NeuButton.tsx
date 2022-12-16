@@ -4,7 +4,6 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { TouchableOpacity } from 'react-native'
-import { scaleSize } from '../../utils/utils'
 
 interface NeuButtonProps {
   title: string
@@ -33,14 +32,13 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: '$borderRadii.large',
-    height: scaleSize(64),
-    padding: scaleSize(10),
+    padding: '$paddings.small',
     marginBottom: '$margins.medium',
     justifyContent: 'center',
     backgroundColor: '$colors.background'
   },
   text: {
-    height: '100%',
+    fontSize: '$textSizes.h2',
     width: '100%'
   }
 })

@@ -194,7 +194,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
-    top: scaleSize(4),
+    top: '$paddings.xsmall',
     marginRight: scaleSize(-26)
   },
   title: {

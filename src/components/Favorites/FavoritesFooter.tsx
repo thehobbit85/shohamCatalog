@@ -6,7 +6,6 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { NeuButton } from '../buttons/NeuButton'
 import { Neumorphism } from '../common/Neumorphism'
 import React from 'react'
-import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
 
 const { height } = Dimensions.get('window')
@@ -54,17 +53,6 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly'
-  },
-  button: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: '$borderRadii.large',
-    height: scaleSize(64),
-    padding: scaleSize(10),
-    marginBottom: '$margins.medium',
-    justifyContent: 'center',
-    backgroundColor: '$colors.background'
   },
   leftButton: { marginLeft: '$margins.medium', marginRight: '$margins.small' },
   rightButton: { marginLeft: '$margins.small', marginRight: '$margins.medium' },

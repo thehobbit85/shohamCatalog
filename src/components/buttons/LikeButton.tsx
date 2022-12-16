@@ -16,7 +16,7 @@ interface LikeButtonProps {
 export const LikeButton = ({
   onSelected,
   selected = false,
-  size = 70
+  size = 64
 }: LikeButtonProps): JSX.Element => {
   const [isSelected, setIsSelected] = useState(selected)
   const [animation, setAnimation] = useState(selected ? 'On' : 'Off')
@@ -65,12 +65,12 @@ const styles = EStyleSheet.create({
     overflow: 'visible',
     height: '$textSizes.h1',
     justifyContent: 'center',
-    width: scaleSize(52)
+    width: '$textSizes.h1'
   },
   touchable: {
     zIndex: 2,
     position: 'absolute',
-    height: scaleSize(52),
-    width: scaleSize(52)
+    height: '$textSizes.h1',
+    width: '$textSizes.h1'
   }
 })

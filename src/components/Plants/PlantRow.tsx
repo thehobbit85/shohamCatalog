@@ -8,7 +8,6 @@ import { Neumorphism } from '../common/Neumorphism'
 import { PlantData } from '../../@types/types'
 import { ThemedText } from '../common/ThemedText'
 import { View } from 'react-native'
-import { scaleSize } from '../../utils/utils'
 import shallow from 'zustand/shallow'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
@@ -138,7 +137,7 @@ const styles = EStyleSheet.create({
   image: {
     backgroundColor: '$colors.background',
     borderRadius: '$borderRadii.small',
-    height: scaleSize(24) * 4,
+    height: '4 * $textSizes.h3',
     marginBottom: '$margins.xsmall'
   }
 })

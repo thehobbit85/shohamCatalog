@@ -89,12 +89,12 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
 const styles = EStyleSheet.create({
   row: {
     flexDirection: 'row',
-    borderRadius: scaleSize(10),
-    backgroundColor: '$backgroundColor',
-    marginHorizontal: scaleSize(16),
-    paddingVertical: scaleSize(8),
-    marginTop: scaleSize(16),
-    marginBottom: scaleSize(8)
+    borderRadius: '$borderRadii.xlarge',
+    backgroundColor: '$colors.background',
+    marginHorizontal: '$margins.medium',
+    paddingVertical: '$paddings.small',
+    marginTop: '$margins.medium',
+    marginBottom: '$margins.small'
   },
   data: {
     flex: 2,
@@ -104,7 +104,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     width: '100%',
-    paddingHorizontal: scaleSize(8)
+    paddingHorizontal: '$paddings.small'
   },
   nameText: {
     flex: 0,
@@ -112,33 +112,33 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingRight: scaleSize(16),
-    fontSize: scaleSize(24)
+    paddingRight: '$paddings.medium',
+    fontSize: '$textSizes.h3'
   },
   textRow: {
-    marginRight: scaleSize(24),
+    marginRight: '$margins.medium',
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },
   fixedText: {
     width: '25%',
-    fontSize: scaleSize(16)
+    fontSize: '$textSizes.h4'
   },
   dynamicText: {
     flex: 0,
     textAlign: 'right',
-    fontSize: scaleSize(16)
+    fontSize: '$textSizes.h4'
   },
   leftPart: {
     flex: 1,
-    paddingLeft: scaleSize(16),
+    paddingLeft: '$paddings.medium',
     flexDirection: 'column',
     justifyContent: 'flex-end'
   },
   image: {
-    backgroundColor: '$backgroundColor',
-    borderRadius: scaleSize(10),
+    backgroundColor: '$colors.background',
+    borderRadius: '$borderRadii.small',
     height: scaleSize(24) * 4,
-    marginBottom: scaleSize(4)
+    marginBottom: '$margins.xsmall'
   }
 })

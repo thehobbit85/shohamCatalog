@@ -1,12 +1,11 @@
 import { FlatList, View } from 'react-native'
+import React, { useMemo } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FavoriteRow } from './FavoriteRow'
-import React, { useMemo } from 'react'
-import { scaleSize } from '../../utils/utils'
-import { useStore } from '../../state/useStore'
-import { useHandler } from '../../hooks/useHandler'
 import { PlantData } from '../../@types/types'
+import { useHandler } from '../../hooks/useHandler'
+import { useStore } from '../../state/useStore'
 
 export const FavoritesList = (): JSX.Element => {
   const favorites = useStore(useHandler((state) => state.favorites))
@@ -31,6 +30,6 @@ const styles = EStyleSheet.create({
   list: {
     height: '100%',
     flexDirection: 'column',
-    marginTop: scaleSize(4)
+    marginTop: '$margins.xsmall'
   }
 })

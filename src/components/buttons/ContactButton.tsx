@@ -8,7 +8,7 @@ import { useHandler } from '../../hooks/useHandler'
 
 const { height } = Dimensions.get('window')
 
-export const Contact = (): JSX.Element => {
+export const ContactButton = (): JSX.Element => {
   const handlePress = useHandler(() => {
     console.log('hey')
   })
@@ -35,7 +35,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'center'
   },
   contactButtonInner: {
-    borderRadius: scaleSize(8),
+    borderRadius: '$borderRadii.large',
     height: '95%'
   }
 })

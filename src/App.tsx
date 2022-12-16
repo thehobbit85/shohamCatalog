@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 
 import { FontLoadView } from './context/FontLoadView'
 import { Home } from './screens/Home'
-import { ParallaxProvider } from './hooks/useParralex'
+import { ParallaxProvider } from './hooks/useParallax'
 import { ThemeContextProvider } from './theme/theme'
 import { useHandler } from './hooks/useHandler'
 import { useStore } from './state/useStore'

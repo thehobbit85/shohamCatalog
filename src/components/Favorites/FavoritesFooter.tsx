@@ -45,8 +45,8 @@ export const FavoritesFooter = (): JSX.Element => {
 
 const styles = EStyleSheet.create({
   footer: {
-    borderRadius: scaleSize(16),
-    backgroundColor: '$backgroundColor',
+    borderRadius: '$borderRadii.large',
+    backgroundColor: '$colors.background',
     position: 'absolute',
     bottom: height / 6,
     width: '100%',
@@ -59,15 +59,15 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: scaleSize(16),
+    borderRadius: '$borderRadii.large',
     height: scaleSize(64),
     padding: scaleSize(10),
-    marginBottom: scaleSize(16),
+    marginBottom: '$margins.medium',
     justifyContent: 'center',
-    backgroundColor: '$backgroundColor'
+    backgroundColor: '$colors.background'
   },
-  leftButton: { marginLeft: scaleSize(16), marginRight: scaleSize(8) },
-  rightButton: { marginLeft: scaleSize(8), marginRight: scaleSize(16) },
+  leftButton: { marginLeft: '$margins.medium', marginRight: '$margins.small' },
+  rightButton: { marginLeft: '$margins.small', marginRight: '$margins.medium' },
   text: {
     height: '100%',
     width: '100%'

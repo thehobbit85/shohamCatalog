@@ -1,10 +1,10 @@
 import { defaultTheme } from './default'
-import { whiteTheme } from './custom'
 import merge from 'deepmerge'
+import { white } from './custom'
 
 export const Styles: { [key: string]: object } = Object.entries({
   default: defaultTheme,
-  white: whiteTheme
+  white
 }).reduce(
   (prev, [key, value]) => ({
     ...prev,

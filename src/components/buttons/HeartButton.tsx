@@ -4,8 +4,8 @@ import { AntDesign } from '@expo/vector-icons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
 import { TouchableOpacity } from 'react-native'
-import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useTheme } from '../../theme/theme'
 
 interface HeartButtonProps {
   onSelected: (isSelected: boolean) => void
@@ -17,7 +17,7 @@ export const HeartButton = ({
   selected = false
 }: HeartButtonProps): JSX.Element => {
   const [isSelected, setIsSelected] = useState(selected)
-
+  const { theme } = useTheme()
   const handlePress = useHandler(() => {
     const newSelection = !isSelected
     setIsSelected(newSelection)
@@ -29,7 +29,7 @@ export const HeartButton = ({
       <TouchableOpacity style={styles.button} onPress={handlePress}>
         <AntDesign
           name="heart"
-          size={32}
+          size={theme?.$textSizes?.h2}
           color={isSelected ? 'red' : 'white'}
         />
       </TouchableOpacity>
@@ -39,10 +39,10 @@ export const HeartButton = ({
 
 const styles = EStyleSheet.create({
   button: {
-    backgroundColor: '$backgroundColor',
-    borderRadius: scaleSize(12),
+    backgroundColor: '$colors.background',
+    borderRadius: '$borderRadii.medium',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: '$paddings.small',
     width: '100%',
     justifyContent: 'center'
   }

@@ -20,7 +20,9 @@ import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useParallax } from '../../hooks/useParallax'
 import { useStore } from '../../state/useStore'
+import { useTheme } from '../../theme/theme'
 
 const { width, height } = Dimensions.get('window')
 
@@ -30,6 +32,9 @@ export const FavoritesButton = ({
   onSelected?: Function
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
+  const { animStyle } = useParallax()
+  const { theme } = useTheme()
+
   const openState = useSharedValue(0)
   const favorites = useStore(useHandler((state) => state.favorites))
   const iconColor = Object.keys(favorites).length > 0 ? 'red' : 'white'
@@ -66,8 +71,12 @@ export const FavoritesButton = ({
   })
 
   const containerStyles = useMemo(
-    () => [styles.itemContainer, containerAnimatedStyle],
-    [containerAnimatedStyle]
+    () => [
+      styles.itemContainer,
+      containerAnimatedStyle,
+      !open ? animStyle : {}
+    ],
+    [containerAnimatedStyle, open, animStyle]
   )
 
   const heartMargin = scaleSize(12)
@@ -104,7 +113,11 @@ export const FavoritesButton = ({
             <ExpendButton onPress={handlePress} open={true} initAngle={1} />
           ) : (
             <TouchableOpacity onPress={handlePress}>
-              <AntDesign name="heart" size={scaleSize(36)} color={iconColor} />
+              <AntDesign
+                name="heart"
+                size={theme?.$textSizes?.h2}
+                color={iconColor}
+              />
             </TouchableOpacity>
           )}
 
@@ -126,14 +139,14 @@ export const FavoritesButton = ({
 const styles = EStyleSheet.create({
   itemContainer: {
     alignSelf: 'flex-end',
-    marginRight: scaleSize(-56),
-    marginTop: scaleSize(8),
-    marginBottom: scaleSize(16),
-    borderRadius: 16,
-    backgroundColor: '$backgroundColor',
+    marginRight: '-1 * $margins.xxlarge',
+    marginTop: '$margins.small',
+    marginBottom: '$margins.medium',
+    borderRadius: '$borderRadii.large',
+    backgroundColor: '$colors.background',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    width: scaleSize(56 * 2),
+    width: scaleSize(56) * 2,
     height: scaleSize(56)
   },
   titleRow: {
@@ -144,8 +157,8 @@ const styles = EStyleSheet.create({
     height: scaleSize(56)
   },
   title: {
-    marginRight: scaleSize(16),
-    paddingTop: scaleSize(4)
+    marginRight: '$margins.medium',
+    paddingTop: '$paddings.xsmall'
   },
   titleText: {
     width: '100%',

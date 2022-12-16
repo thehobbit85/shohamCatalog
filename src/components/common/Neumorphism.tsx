@@ -1,5 +1,6 @@
-import EStyleSheet from 'react-native-extended-stylesheet'
 import React, { useMemo } from 'react'
+
+import EStyleSheet from 'react-native-extended-stylesheet'
 import { View } from 'react-native'
 import color from 'color'
 
@@ -14,7 +15,7 @@ interface NeumorphismProps {
 export const Neumorphism = (props: NeumorphismProps): JSX.Element => {
   const {
     children,
-    backgroundColor = EStyleSheet.value('$backgroundColor'),
+    backgroundColor = EStyleSheet.value('$colors.background'),
     revert = false,
     style = {}
   } = props

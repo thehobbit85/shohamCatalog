@@ -12,9 +12,8 @@ import { FavoritesButton } from '../components/Favorites/FavoritesButton'
 import { PlantList } from '../components/Plants/PlantList'
 import { Title } from '../components/Title'
 import { TypeList } from '../components/Types/TypeList'
-
-import { useStore } from '../state/useStore'
 import { useHandler } from '../hooks/useHandler'
+import { useStore } from '../state/useStore'
 
 const { height } = Dimensions.get('window')
 
@@ -48,7 +47,7 @@ export const Home = (): JSX.Element => {
 const styles = EStyleSheet.create({
   background: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: '$backgroundColor',
+    backgroundColor: '$colors.background',
     borderRightColor: 'black',
     borderLeftColor: 'black',
     borderLeftWidth: 8,

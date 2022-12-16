@@ -1,8 +1,8 @@
 import Animated, { SlideInLeft } from 'react-native-reanimated'
 import { Dimensions, Image } from 'react-native'
+import React, { useMemo } from 'react'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
-import React, { useMemo } from 'react'
 import { ThemedText } from './common/ThemedText'
 import { scaleSize } from '../utils/utils'
 
@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
   title: {
     flex: 1,
     height: '100%',
-    fontSize: scaleSize(48),
+    fontSize: '$textSizes.h1',
     right: scaleSize(16)
   },
   logo: {

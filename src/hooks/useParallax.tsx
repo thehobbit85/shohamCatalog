@@ -80,17 +80,6 @@ export const useParallax = (config?: ParallaxConfig): ParallaxObject => {
   const sensitivity = config?.sensitivity ?? 1
   const { posY, posX } = useContext(AccelerometerContext)
 
-  useEffect(() => {
-    const timeA = setInterval(() => {}, 250)
-    const timeB = setInterval(() => {}, 250)
-    console.log('84. posY', JSON.stringify(posY, null, 2))
-    console.log('85. posX', JSON.stringify(posX, null, 2))
-    return () => {
-      clearInterval(timeA)
-      clearInterval(timeB)
-    }
-  }, [posY, posX])
-
   const animStyle = useAnimatedStyle(() => {
     const getSensitivity = (value: number): number => {
       'worklet'

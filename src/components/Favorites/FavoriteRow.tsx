@@ -6,7 +6,6 @@ import React from 'react'
 import { ThemedText } from '../common/ThemedText'
 import { TrashButton } from '../buttons/TrashButton'
 import { View } from 'react-native'
-import { scaleSize } from '../../utils/utils'
 import shallow from 'zustand/shallow'
 import { useHandler } from '../../hooks/useHandler'
 import { useStore } from '../../state/useStore'
@@ -50,22 +49,22 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: scaleSize(10),
-    backgroundColor: '$backgroundColor',
-    marginHorizontal: scaleSize(16),
-    paddingVertical: scaleSize(8),
-    marginBottom: scaleSize(8),
-    marginTop: scaleSize(16),
-    paddingLeft: scaleSize(8)
+    borderRadius: '$borderRadii.small',
+    backgroundColor: '$colors.background',
+    marginHorizontal: '$margins.medium',
+    marginBottom: '$margins.small',
+    marginTop: '$margins.medium',
+    paddingVertical: '$paddings.small',
+    paddingLeft: '$paddings.small'
   },
   nameRow: {
-    marginHorizontal: scaleSize(8)
+    marginHorizontal: '$margins.small'
   },
   nameText: {
     width: '100%',
     textAlign: 'right',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    fontSize: scaleSize(24)
+    fontSize: '$textSizes.h3'
   }
 })

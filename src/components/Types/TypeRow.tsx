@@ -20,8 +20,9 @@ import { ThemedText } from '../common/ThemedText'
 import { TypeData } from '../../@types/types'
 import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
-import { useParallax } from '../../hooks/useParralex'
+import { useParallax } from '../../hooks/useParallax'
 import { useStore } from '../../state/useStore'
+import { useTheme } from '../../theme/theme'
 
 const { height, width } = Dimensions.get('window')
 
@@ -39,6 +40,7 @@ export const TypeRow = ({
 }: TypeRowProps): JSX.Element => {
   const [pressed, setPressed] = useState(false)
   const { animStyle } = useParallax()
+  const { theme } = useTheme()
   const open = useSharedValue(0)
   const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri])
 
@@ -69,17 +71,21 @@ export const TypeRow = ({
       })
 
     return {
-      marginTop: interpolateOpen(styles.container.marginTop, -64),
-      marginLeft: interpolateOpen(styles.container.marginLeft, 0),
-      marginRight: interpolateOpen(styles.container.marginRight, 0),
-      marginBottom: interpolateOpen(styles.container.marginBottom, 0),
-      height: interpolateOpen(styles.container.height, height + 74)
+      marginTop: interpolateOpen(styles.itemContainer.marginTop, -64),
+      marginLeft: interpolateOpen(styles.itemContainer.marginLeft, 0),
+      marginRight: interpolateOpen(styles.itemContainer.marginRight, 0),
+      marginBottom: interpolateOpen(styles.itemContainer.marginBottom, 0),
+      height: interpolateOpen(styles.itemContainer.height, height + 74)
     }
   })
 
   const containerStyles = useMemo(
-    () => [styles.container, containerAnimatedStyle, animStyle],
-    [containerAnimatedStyle, animStyle]
+    () => [
+      styles.itemContainer,
+      containerAnimatedStyle,
+      !pressed ? animStyle : {}
+    ],
+    [containerAnimatedStyle, pressed, animStyle]
   )
 
   // Type Animation
@@ -147,7 +153,7 @@ export const TypeRow = ({
             <ExpendButton
               onPress={handlePress}
               open={pressed}
-              size={scaleSize(36)}
+              size={theme?.$textSizes?.h2}
             />
           </Animated.View>
         </View>
@@ -165,14 +171,14 @@ export const TypeRow = ({
 }
 
 const styles = EStyleSheet.create({
-  container: {
-    marginTop: scaleSize(24),
-    marginLeft: scaleSize(-36),
-    marginRight: scaleSize(36),
+  itemContainer: {
+    marginTop: '$margins.large',
+    marginLeft: '-1 * $margins.xlarge',
+    marginRight: '$margins.xlarge',
     marginBottom: scaleSize(14),
     height: height / 5,
-    borderRadius: 24,
-    backgroundColor: '$backgroundColor',
+    borderRadius: '$borderRadii.xlarge',
+    backgroundColor: '$colors.background',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end'
@@ -196,12 +202,12 @@ const styles = EStyleSheet.create({
     width: '100%'
   },
   potType: {
-    marginTop: scaleSize(8),
-    fontSize: scaleSize(24)
+    marginTop: '$margins.small',
+    fontSize: '$textSizes.h3'
   },
   arrow: {
-    marginLeft: scaleSize(36),
-    paddingBottom: scaleSize(16)
+    marginLeft: '$margins.xlarge',
+    paddingBottom: '$paddings.medium'
   },
   imageView: {
     flex: 1

@@ -61,10 +61,10 @@ export const ThemedText = ({
 const styles = EStyleSheet.create({
   text: {
     paddingTop: scaleSize(1),
-    paddingRight: scaleSize(4),
+    paddingRight: '$paddings.xsmall',
     textAlign: 'right',
     fontFamily: 'GveretLevin-Regular',
-    fontSize: scaleSize(36),
-    color: 'white'
+    fontSize: '$textSizes.h2',
+    color: '$colors.text'
   }
 })

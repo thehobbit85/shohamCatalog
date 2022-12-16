@@ -9,30 +9,33 @@ import { Line, Svg } from 'react-native-svg'
 import React, { useEffect, useState } from 'react'
 
 import { TouchableOpacity } from 'react-native'
-import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
+import { useTheme } from '../../theme/theme'
 
 const AnimatedLine = Animated.createAnimatedComponent(Line)
 
 interface ExpendButtonProps {
   color?: string
   size?: number
-  strokeWidth?: string
+  strokeWidth?: number
   open?: boolean
   onPress?: (isOpen: boolean) => void
   initAngle?: number
 }
 
 export const ExpendButton = ({
-  size = scaleSize(36),
+  size,
   onPress,
   color = 'white',
-  strokeWidth = `${size / 3.5}`,
+  strokeWidth,
   open,
   initAngle = 0.1
 }: ExpendButtonProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const angle = useSharedValue(initAngle)
+  const { theme } = useTheme()
+  const buttonSize: number = size ?? theme?.$textSizes?.h2 ?? 0
+  strokeWidth = strokeWidth ?? buttonSize / 3.5
 
   const handleToggleDropdown = useHandler(() => {
     if (onPress != null) onPress(!isOpen)
@@ -46,7 +49,7 @@ export const ExpendButton = ({
     })
   }, [angle, isOpen, open])
 
-  const svgSize = scaleSize(size)
+  const svgSize = buttonSize
   const svgMiddle = svgSize / 2
 
   const viewBox = `${0} ${-svgSize / 3} ${svgSize} ${svgSize * 1.5}`

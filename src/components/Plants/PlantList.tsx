@@ -2,12 +2,11 @@ import Animated, { SlideInDown } from 'react-native-reanimated'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { FlatList } from 'react-native'
+import { PlantData } from '../../@types/types'
 import { PlantRow } from './PlantRow'
 import React from 'react'
-import { scaleSize } from '../../utils/utils'
-import { useStore } from '../../state/useStore'
 import { useHandler } from '../../hooks/useHandler'
-import { PlantData } from '../../@types/types'
+import { useStore } from '../../state/useStore'
 
 interface PlantListProps {
   type: string
@@ -38,6 +37,6 @@ export const PlantList = ({ type }: PlantListProps): JSX.Element => {
 const styles = EStyleSheet.create({
   row: {
     width: '100%',
-    paddingTop: scaleSize(4)
+    paddingTop: '$paddings.xsmall'
   }
 })

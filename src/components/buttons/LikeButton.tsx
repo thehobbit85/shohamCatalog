@@ -61,9 +61,9 @@ export const LikeButton = ({
 const styles = EStyleSheet.create({
   button: {
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: '$paddings.small',
     overflow: 'visible',
-    height: scaleSize(48),
+    height: '$textSizes.h1',
     justifyContent: 'center',
     width: scaleSize(52)
   },

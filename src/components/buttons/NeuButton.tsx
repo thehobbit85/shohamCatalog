@@ -1,6 +1,7 @@
+import React, { useMemo } from 'react'
+
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Neumorphism } from '../common/Neumorphism'
-import React, { useMemo } from 'react'
 import { ThemedText } from '../common/ThemedText'
 import { TouchableOpacity } from 'react-native'
 import { scaleSize } from '../../utils/utils'
@@ -31,12 +32,12 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: scaleSize(16),
+    borderRadius: '$borderRadii.large',
     height: scaleSize(64),
     padding: scaleSize(10),
-    marginBottom: scaleSize(16),
+    marginBottom: '$margins.medium',
     justifyContent: 'center',
-    backgroundColor: '$backgroundColor'
+    backgroundColor: '$colors.background'
   },
   text: {
     height: '100%',

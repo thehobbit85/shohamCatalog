@@ -20,7 +20,6 @@ import { Neumorphism } from '../common/Neumorphism'
 import { ThemedText } from '../common/ThemedText'
 import { scaleSize } from '../../utils/utils'
 import { useHandler } from '../../hooks/useHandler'
-import { useParallax } from '../../hooks/useParallax'
 import { useStore } from '../../state/useStore'
 import { useTheme } from '../../theme/theme'
 
@@ -32,7 +31,7 @@ export const FavoritesButton = ({
   onSelected?: Function
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
-  const { animStyle } = useParallax({ horizontal: 0.2, vertical: 0 })
+
   const { theme } = useTheme()
 
   const openState = useSharedValue(0)
@@ -71,12 +70,8 @@ export const FavoritesButton = ({
   })
 
   const containerStyles = useMemo(
-    () => [
-      styles.itemContainer,
-      containerAnimatedStyle,
-      !open ? animStyle : {}
-    ],
-    [containerAnimatedStyle, open, animStyle]
+    () => [styles.itemContainer, containerAnimatedStyle],
+    [containerAnimatedStyle]
   )
 
   const heartMargin = scaleSize(12)

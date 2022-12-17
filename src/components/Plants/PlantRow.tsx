@@ -11,7 +11,6 @@ import { ThemedText } from '../common/ThemedText'
 import { View } from 'react-native'
 import shallow from 'zustand/shallow'
 import { useHandler } from '../../hooks/useHandler'
-import { useParallax } from '../../hooks/useParallax'
 import { useStore } from '../../state/useStore'
 
 interface PlantRowProps {
@@ -33,10 +32,6 @@ const TextRow = ({
 
 export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
   const { id, name, price, colors, imageUri, amount } = data
-  const { animStyle } = useParallax({
-    horizontal: 0.2,
-    vertical: 0
-  })
 
   const { translations, favorites, setFavorites } = useStore(
     useHandler((state) => ({
@@ -65,7 +60,7 @@ export const PlantRow = ({ data }: PlantRowProps): JSX.Element => {
 
   return (
     <Neumorphism>
-      <Animated.View style={[styles.row, animStyle]}>
+      <Animated.View style={styles.row}>
         <View style={styles.leftPart}>
           <CachedImage
             resizeMode="stretch"
